@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEET Prep — Dark Mode</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --bg-1: #05060b;
+      --bg-2: #0b1220;
+      --muted: #9aa6bf88;
+      --accent-1: #b9a3ff; /* light purple */
+      --accent-2: #d9b7ff;
+      --card-bg: rgba(255,255,255,0.02);
+      --glass-border: rgba(255,255,255,0.04);
+      --shadow: 0 30px 80px rgba(2,6,23,0.75);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; padding:26px; font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto;
+      background: radial-gradient(900px 400px at 10% 10%, rgba(185,163,255,0.02), transparent 8%),
+                  radial-gradient(700px 300px at 90% 90%, rgba(217,183,255,0.02), transparent 8%),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:#e6eef8; -webkit-font-smoothing:antialiased; display:flex; align-items:center; justify-content:center;
+      overflow-x: hidden;
+    }
+
+    .wrap{width:100%; max-width:1060px}
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border-radius:18px; padding:18px; position:relative; overflow:hidden; box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    /* soft neon blobs */
+    .blob{position:absolute; border-radius:50%; filter:blur(64px); opacity:0.9; mix-blend-mode:screen; z-index: 0;}
+    .blob.a{width:420px; height:420px; right:-120px; top:-140px; background:linear-gradient(135deg,#cdb4ff33,#b9a3ff33);} 
+    .blob.b{width:320px; height:320px; left:-110px; bottom:-90px; background:linear-gradient(135deg,#ffd1f133,#cdb4ff33);} 
+
+    .top{display:flex; gap:14px; align-items:center; justify-content:space-between; position: relative; z-index: 2;}
+    .brand{display:flex; gap:12px; align-items:center}
+    .logo{width:60px; height:60px; border-radius:14px; background:linear-gradient(135deg,var(--accent-1),var(--accent-2)); display:flex; align-items:center; justify-content:center; color:#0a0820; font-weight:700; font-size:20px; box-shadow:0 10px 40px rgba(145,95,255,0.09);}
+    .brand h1{margin:0; font-size:20px}
+    .brand p{margin:0; color:var(--muted); font-size:13px}
+
+    .search{display:flex; gap:8px; align-items:center}
+    .search input{padding:12px 14px; border-radius:12px; border:1px solid var(--glass-border); outline:none; width:260px; background:linear-gradient(180deg, rgba(255,255,255,0.008), rgba(255,255,255,0.01)); color:#e6eef8; transition: all 0.3s ease;}
+    .search input:focus {border-color: rgba(185, 163, 255, 0.3); box-shadow: 0 0 0 3px rgba(185, 163, 255, 0.1);}
+    .btn{padding:10px 14px; border-radius:12px; background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); border:none; cursor:pointer; font-weight:700; color:#07102a; box-shadow:0 12px 32px rgba(0,0,0,0.6); transition: all 0.3s ease; position: relative; overflow: hidden; z-index: 1;}
+    .btn:hover {transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.7);}
+    .btn:active {transform: translateY(1px);}
+
+    .main-grid{display:grid; grid-template-columns:1fr; gap:18px; margin-top:18px; position: relative; z-index: 2;}
+
+    /* section title */
+    .section-title{display:flex; flex-direction:column; gap:6px}
+    .section-title h2{margin:0; color:#f1f7ff}
+    .section-title p{margin:0; color:var(--muted); font-size:13px}
+
+    .card-list{display:grid; gap:14px; margin-top:6px}
+
+    .series-card{display:flex; gap:14px; align-items:center; padding:16px; border-radius:14px; background:var(--card-bg); box-shadow:0 10px 40px rgba(2,6,23,0.65); position:relative; overflow:hidden; cursor:pointer; transition:transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease, border-color .28s ease, background .28s ease; border:1px solid rgba(255,255,255,0.02); z-index: 1;}
+    .series-card:hover{transform:translateY(-6px); box-shadow:0 30px 80px rgba(0,0,0,0.8)}
+    .series-card img{width:100px; height:100px; border-radius:12px; object-fit:cover; flex-shrink:0; background: linear-gradient(45deg, #2a2a2a, #1a1a1a); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 10px; text-align: center;}
+    .series-meta{flex:1}
+    .series-meta h3{margin:0 0 6px 0; color:#f6fbff; display:flex; align-items:center; gap:8px}
+    .series-meta p{margin:0; color:var(--muted); font-size:13px}
+    .meta-bottom{display:flex; gap:10px; align-items:center; margin-top:10px; flex-wrap:wrap}
+    .pill{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008)); padding:8px 10px; border-radius:999px; font-weight:700; color:#eaf6ff; font-size: 12px;}
+    .small{font-size:12px; color:var(--muted)}
+
+    /* disabled */
+    .series-card.disabled{opacity:0.6; cursor: not-allowed;}
+    .series-card.disabled::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(2,6,23,0.45), rgba(2,6,23,0.35)); pointer-events:none}
+
+    /* active card tweaks */
+    .series-card.active{border:1px solid rgba(185,163,255,0.07); box-shadow:0 30px 90px rgba(20,10,40,0.7), 0 0 30px rgba(185,163,255,0.04); background:linear-gradient(180deg, rgba(185,163,255,0.02), rgba(217,183,255,0.01));}
+
+    /* smooth shining band using WEN UI style (left to right) */
+    .series-card.active::after{content:''; position:absolute; top:0; left:-120%; width:40%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); transform:skewX(-12deg); filter:blur(6px); animation:wenShine 3s linear infinite; pointer-events:none; mix-blend-mode:screen}
+
+    @keyframes wenShine{0%{left:-120%}50%{left:120%}100%{left:120%}}
+
+    /* smaller, subtle ribbon (not too bold) */
+    .ribbon{position:absolute; right:12px; top:12px; background:linear-gradient(90deg,var(--accent-1),var(--accent-2)); color:#07102a; padding:6px 8px; font-weight:600; border-radius:8px; font-size:11px; box-shadow:0 6px 18px rgba(145,95,255,0.08); overflow: hidden; z-index: 2;}
+
+    /* badge shine for small icons (from WEN UI) */
+    .ribbon::after{content:''; position:absolute; top:0; left:-100%; width:50%; height:100%; background:linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); transform:skewX(-25deg); animation:badgeShine 3.5s infinite; pointer-events: none;}
+    @keyframes badgeShine{0% { left: -100%; } 50% { left: 150%; } 100% { left: 150%; }}
+
+    /* card-inner glow when clicked */
+    .series-card.glow{box-shadow:0 40px 120px rgba(130,90,255,0.18), 0 0 60px rgba(185,163,255,0.06); outline:2px solid rgba(185,163,255,0.06); animation: pulseGlow 0.8s ease-out;}
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 10px 40px rgba(2,6,23,0.65), 0 0 0 rgba(185,163,255,0); }
+      50% { box-shadow: 0 40px 120px rgba(130,90,255,0.18), 0 0 60px rgba(185,163,255,0.06); }
+      100% { box-shadow: 0 10px 40px rgba(2,6,23,0.65), 0 0 0 rgba(185,163,255,0); }
+    }
+
+    /* details area for active test with icons */
+    .details{margin-top:10px; display:flex; gap:14px; align-items:center; color:var(--muted); font-size:13px; flex-wrap: wrap;}
+    .details strong{color:#f7fdff}
+    .details .item{display:flex; align-items:center; gap:8px}
+    .details .item i{color:var(--accent-1); width:14px; text-align:center}
+
+    /* purple button style */
+    .btn-purple{padding:10px 14px; border-radius:12px; background:linear-gradient(90deg,#c9b3ff,#e7d4ff); border:none; cursor:pointer; font-weight:700; color:#0b0720; box-shadow:0 10px 30px rgba(120,70,255,0.12); transition: all 0.3s ease; position: relative; overflow: hidden; z-index: 1;}
+    .btn-purple:hover {transform: translateY(-2px); box-shadow: 0 14px 36px rgba(120,70,255,0.18);}
+    .btn-purple:active {transform: translateY(1px);}
+
+    /* Button shine effect */
+    .btn::after, .btn-purple::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-25deg);
+      transition: all 0.75s ease;
+      z-index: -1;
+    }
+    
+    .btn:hover::after, .btn-purple:hover::after {
+      left: 150%;
+    }
+
+    /* Modal styles */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 6, 11, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+    
+    .modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-card {
+      background: var(--bg-2);
+      border-radius: 16px;
+      padding: 24px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--glass-border);
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .modal.open .modal-card {
+      transform: translateY(0);
+    }
+    
+    .modal-card h3 {
+      margin: 0 0 12px 0;
+      color: #f1f7ff;
+    }
+    
+    .modal-card p {
+      margin: 0 0 20px 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    
+    .modal-card .close {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--bg-2);
+      color: #f1f7ff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 1000;
+      border-left: 4px solid var(--accent-1);
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .toast i {
+      color: var(--accent-1);
+    }
+
+    /* responsive tweaks */
+    @media (max-width:900px){
+      .top { flex-direction: column; align-items: flex-start; }
+      .search { width: 100%; }
+      .search input { flex: 1; }
+      .series-card{padding:12px}
+      .series-card img{width:84px;height:84px}
+      .details { gap: 8px; }
+    }
+    @media (max-width:600px){
+      body { padding: 16px; }
+      .logo{width:48px;height:48px; font-size: 16px;}
+      .brand h1 { font-size: 18px; }
+      .series-card { flex-direction: column; align-items: flex-start; }
+      .series-card img{width:100%;height:160px; margin-bottom: 10px;}
+      .series-meta { width: 100%; }
+      .meta-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .details { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .btn-purple { width: 100%; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="blob a"></div>
+      <div class="blob b"></div>
+
+      <div class="top">
+        <div class="brand">
+          <div class="logo"><i class="fa-solid fa-vial"></i></div>
+          <div>
+            <h1>NEET Prep</h1>
+            <p>Calm focus — sharp practice</p>
+          </div>
+        </div>
+
+        <div class="search">
+          <input placeholder="Search tests, topics..." />
+          <button class="btn">Explore</button>
+        </div>
+      </div>
+
+      <div class="main-grid">
+        <div>
+          <div class="section-title">
+            <h2>Test Series</h2>
+            <p>Only one live test. Click any disabled series to see availability message.</p>
+          </div>
+
+          <div class="card-list">
+            <!-- Active Card: NEET Full Mock Test -->
+            <div class="series-card active" data-active="true" data-name="NEET Full Mock Test" id="neet-full">
+              <div class="ribbon">fresher</div>
+              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20fill%3D%22%23262626%22%20width%3D%22800%22%20height%3D%22800%22%2F%3E%3Ctext%20fill%3D%22%239aa6bf88%22%20font-family%3D%22Poppins%22%20font-size%3D%2220%22%20dy%3D%2220%22%20font-weight%3D%22200%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%3ENEET%20Mock%20Test%3C%2Ftext%3E%3C%2Fsvg%3E" alt="NEET Mock Test">
+              <div class="series-meta">
+                <h3>NEET Full Mock Test <span class="badge" style="font-size:12px; padding:6px 8px; background:transparent; color:var(--muted)">LIVE</span></h3>
+                <p>Complete syllabus mock — timed, detailed solutions</p>
+                <div class="meta-bottom">
+                  <div class="pill">120 Qs • 180 mins</div>
+                  <div class="small"><i class="fa-regular fa-calendar"></i> 05 Sep 2025 • <i class="fa-regular fa-clock"></i> Starts 9:14 PM • <strong>Marks:</strong> 720</div>
+                </div>
+                <div class="details">
+                  <div class="item"><i class="fa-regular fa-clock"></i><strong>Duration:</strong> 180 mins</div>
+                  <div class="item"><i class="fa-regular fa-calendar"></i><strong>Date:</strong> 05 Sep 2025</div>
+                  <div class="item"><i class="fa-solid fa-list-ol"></i><strong>Marks:</strong> 720</div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px">
+                <button class="btn-purple start">Start Test</button>
+                <button class="btn-purple" id="view-info"><i class="fa-solid fa-circle-info"></i></button>
+              </div>
+            </div>
+
+            <!-- Biology Booster (disabled) -->
+            <div class="series-card disabled" data-active="false" data-name="Biology Booster">
+              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20fill%3D%22%23262626%22%20width%3D%22800%22%20height%3D%22800%22%2F%3E%3Ctext%20fill%3D%22%239aa6bf88%22%20font-family%3D%22Poppins%22%20font-size%3D%2220%22%20dy%3D%2220%22%20font-weight%3D%22200%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%3EBiology%20Booster%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Biology Booster">
+              <div class="series-meta">
+                <h3>Biology Booster</h3>
+                <p>Focused chapter-wise practice with diagrams and explanations</p>
+                <div class="meta-bottom">
+                  <div class="pill">40 Qs</div>
+                  <div class="small"><i class="fa-solid fa-hourglass-start"></i> Coming soon</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Physics Concept Drills (disabled) -->
+            <div class="series-card disabled" data-active="false" data-name="Physics Concept Drills">
+              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20fill%3D%22%23262626%22%20width%3D%22800%22%20height%3D%22800%22%2F%3E%3Ctext%20fill%3D%22%239aa6bf88%22%20font-family%3D%22Poppins%22%20font-size%3D%2220%22%20dy%3D%2220%22%20font-weight%3D%22200%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%3EPhysics%20Drills%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Physics Drills">
+              <div class="series-meta">
+                <h3>Physics Concept Drills</h3>
+                <p>Short, high-yield concept tests with diagrams</p>
+                <div class="meta-bottom">
+                  <div class="pill">25 Qs</div>
+                  <div class="small"><i class="fa-solid fa-flask"></i> Coming soon</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chem Revision Sprint (disabled) -->
+            <div class="series-card disabled" data-active="false" data-name="Chem Revision Sprint">
+              <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20fill%3D%22%23262626%22%20width%3D%22800%22%20height%3D%22800%22%2F%3E%3Ctext%20fill%3D%22%239aa6bf88%22%20font-family%3D%22Poppins%22%20font-size%3D%2220%22%20dy%3D%2220%22%20font-weight%3D%22200%22%20x%3D%2250%25%22%20y%3D%2250%25%22%20text-anchor%3D%22middle%22%3EChemistry%20Sprint%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Chemistry Sprint">
+              <div class="series-meta">
+                <h3>Chem Revision Sprint</h3>
+                <p>Quick revision sets with explanations and reaction maps</p>
+                <div class="meta-bottom">
+                  <div class="pill">30 Qs</div>
+                  <div class="small"><i class="fa-solid fa-vial"></i> Coming soon</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <h3>Test series unavailable</h3>
+      <p id="modal-text">This test series is currently unavailable. It will be active after some time.</p>
+      <div class="close"><button class="btn" id="modal-close">OK</button></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-info"></i>
+    <span id="toast-text">Notification message</span>
+  </div>
+
+  <script>
+    // Show toast notification
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      
+      toastText.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, duration);
+    }
+
+    // interactions: disabled => modal. active => glow + info alert
+    document.querySelectorAll('.series-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        const active = card.getAttribute('data-active') === 'true';
+        const name = card.getAttribute('data-name') || 'This test';
+        
+        // if disabled
+        if(!active){
+          const modal = document.getElementById('modal');
+          const txt = document.getElementById('modal-text');
+          txt.textContent = `${name} is currently unavailable. It will be active soon.`;
+          modal.classList.add('open');
+          return;
+        }
+
+        // active behavior: glow (smooth) and show details toast
+        card.classList.add('glow');
+        setTimeout(() => card.classList.remove('glow'), 800);
+
+        // if clicked start button
+        const startBtn = card.querySelector('.start');
+        if(e.target === startBtn || e.target.closest('.start')){
+          // Show loading effect on button
+          const button = e.target.closest('.start');
+          const originalText = button.textContent;
+          button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Loading...';
+          
+          setTimeout(() => {
+            button.textContent = originalText;
+            showToast(`Starting "${name}" - Good luck!`, 2000);
+          }, 1000);
+          return;
+        }
+
+        // if clicked info button
+        if(e.target.id === 'view-info' || e.target.closest('#view-info')){
+          showToast(`${name} - Marks: 720, Duration: 180 mins, Date: 05 Sep 2025`, 3000);
+          return;
+        }
+
+        // else show preview
+        showToast(`Previewing "${name}" — press Start Test to begin.`, 2000);
+      });
+    });
+
+    // Modal close functionality
+    document.getElementById('modal-close').addEventListener('click', () => {
+      document.getElementById('modal').classList.remove('open');
+    });
+
+    document.addEventListener('keydown', (e) => { 
+      if(e.key === 'Escape') document.getElementById('modal').classList.remove('open'); 
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modal')) {
+        document.getElementById('modal').classList.remove('open');
+      }
+    });
+
+    // Add hover effects to all buttons
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('mouseenter', () => {
+        button.style.transform = 'translateY(-2px)';
+      });
+      
+      button.addEventListener('mouseleave', () => {
+        button.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+</body>
+</html>
