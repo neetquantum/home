@@ -20,6 +20,10 @@
             --incorrect: #f87171;
             --skipped: #9ca3af;
             --answered: #4ade80;
+            --physics: #ff6b6b;
+            --chemistry: #4ecdc4;
+            --botany: #4ade80;
+            --zoology: #60a5fa;
         }
 
         * {
@@ -362,6 +366,23 @@
             box-shadow: 0 0 0 2px var(--accent-1);
         }
 
+        /* Subject highlighting */
+        .grid-btn.physics {
+            border-left: 3px solid var(--physics);
+        }
+
+        .grid-btn.chemistry {
+            border-left: 3px solid var(--chemistry);
+        }
+
+        .grid-btn.botany {
+            border-left: 3px solid var(--botany);
+        }
+
+        .grid-btn.zoology {
+            border-left: 3px solid var(--zoology);
+        }
+
         /* Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -412,6 +433,7 @@
 
         .form-group {
             margin-bottom: 20px;
+            position: relative;
         }
 
         .form-group label {
@@ -443,6 +465,15 @@
             border-radius: 8px;
             border: 1px solid var(--accent-1);
             display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .suggestion-box.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .suggestion-text {
@@ -844,11 +875,19 @@
             padding: 0 10px;
         }
 
+        .chart-bar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
         .chart-bar {
             width: 30px;
             background: linear-gradient(to top, var(--accent-1), var(--accent-2));
             border-radius: 4px 4px 0 0;
-            transition: height 1s ease;
+            height: 0%;
+            transition: height 1.5s ease;
         }
 
         .chart-label {
@@ -856,6 +895,25 @@
             font-size: 12px;
             margin-top: 8px;
             color: var(--muted);
+        }
+
+        /* Current subject indicator */
+        .current-subject {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 12px;
+            background: rgba(185, 163, 255, 0.1);
+            border: 1px solid var(--accent-1);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(185, 163, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(185, 163, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(185, 163, 255, 0); }
         }
 
         /* Animations */
@@ -877,6 +935,11 @@
             to {
                 opacity: 0;
             }
+        }
+
+        /* Smooth autofill animation */
+        .auto-fill {
+            transition: all 0.8s ease;
         }
 
         /* Responsive styles */
@@ -948,6 +1011,11 @@
             .confirmation-buttons {
                 flex-direction: column;
             }
+
+            .current-subject {
+                display: block;
+                margin: 8px 0 0 0;
+            }
         }
 
         .hidden {
@@ -996,7 +1064,7 @@
             <div class="main-content">
                 <div class="question-panel">
                     <div class="question-container">
-                        <div class="question-number">Question <span id="currentQuestion">1</span> of 180</div>
+                        <div class="question-number">Question <span id="currentQuestion">1</span> of 180 <span id="currentSubject" class="current-subject"></span></div>
                         <div class="question-text" id="questionText">Loading question...</div>
                         
                         <div class="options-container" id="optionsContainer">
@@ -1040,7 +1108,7 @@
             
             <div class="form-group">
                 <label for="userName">Full Name</label>
-                <input type="text" id="userName" placeholder="Enter your full name">
+                <input type="text" id="userName" placeholder="Enter your full name" class="auto-fill">
                 <div class="suggestion-box" id="nameSuggestion">
                     <div class="suggestion-text">Do you mean <span id="suggestionName">Khushi</span>?</div>
                     <div class="suggestion-buttons">
@@ -1052,17 +1120,17 @@
             
             <div class="form-group">
                 <label for="userAge">Age</label>
-                <input type="number" id="userAge" placeholder="Enter your age">
+                <input type="number" id="userAge" placeholder="Enter your age" class="auto-fill">
             </div>
             
             <div class="form-group">
                 <label for="userClass">Class/Stream</label>
-                <input type="text" id="userClass" placeholder="e.g. 12th, Dropper, PCMB">
+                <input type="text" id="userClass" placeholder="e.g. 12th, Dropper, PCMB" class="auto-fill">
             </div>
             
             <div class="form-group">
                 <label for="userDOB">Date of Birth (Optional)</label>
-                <input type="date" id="userDOB">
+                <input type="date" id="userDOB" class="auto-fill">
             </div>
             
             <div class="modal-actions">
@@ -1110,15 +1178,15 @@
             <div class="results-stats">
                 <div class="stat-card correct">
                     <div class="stat-value" id="correctCount">0</div>
-                    <div class="stat-label">Correct</div>
+                    <div class="stat-label">Correct Answers</div>
                 </div>
                 <div class="stat-card incorrect">
                     <div class="stat-value" id="incorrectCount">0</div>
-                    <div class="stat-label">Incorrect</div>
+                    <div class="stat-label">Incorrect Answers</div>
                 </div>
                 <div class="stat-card skipped">
                     <div class="stat-value" id="skippedCount">0</div>
-                    <div class="stat-label">Skipped</div>
+                    <div class="stat-label">Skipped Questions</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="accuracyValue">0%</div>
@@ -1126,499 +1194,206 @@
                 </div>
             </div>
             
-            <div class="performance-charts">
-                <h3 class="charts-title">Performance Analysis</h3>
-                <div class="charts-container" id="chartsContainer">
-                    <!-- Charts will be inserted here -->
+            <div class="subject-breakdown">
+                <h3 class="breakdown-title">Subject-wise Performance</h3>
+                <div class="subject-stats">
+                    <div class="subject-stat">
+                        <div class="subject-name">Physics</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="physicsScore" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="subject-stat">
+                        <div class="subject-name">Chemistry</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="chemistryScore" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="subject-stat">
+                        <div class="subject-name">Botany</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="botanyScore" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="subject-stat">
+                        <div class="subject-name">Zoology</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="zoologyScore" style="width: 0%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="subject-breakdown">
-                <h3 class="breakdown-title">Subject-wise Performance</h3>
-                <div class="subject-stats" id="subjectStats">
-                    <!-- Subject stats will be inserted here -->
+            <div class="performance-charts">
+                <h3 class="charts-title">Performance Analysis</h3>
+                <div class="charts-container">
+                    <div class="chart">
+                        <div class="chart-title">Subject-wise Score</div>
+                        <div class="chart-bars">
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" id="physicsChart" style="height: 0%"></div>
+                                <div class="chart-label">Physics</div>
+                            </div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" id="chemistryChart" style="height: 0%"></div>
+                                <div class="chart-label">Chemistry</div>
+                            </div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" id="botanyChart" style="height: 0%"></div>
+                                <div class="chart-label">Botany</div>
+                            </div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" id="zoologyChart" style="height: 0%"></div>
+                                <div class="chart-label">Zoology</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart">
+                        <div class="chart-title">Time Distribution</div>
+                        <div class="chart-bars">
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" id="timePhysics" style="height: 0%"></div>
+                                <div class="chart-label">Physics</div>
+                            </div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" id="timeChemistry" style="height: 0%"></div>
+                                <div class="chart-label">Chemistry</div>
+                            </div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" id="timeBotany" style="height: 0%"></div>
+                                <div class="chart-label">Botany</div>
+                            </div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" id="timeZoology" style="height: 0%"></div>
+                                <div class="chart-label">Zoology</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="college-prediction">
-                <h3 class="college-title">College Predictions Based on Your Score</h3>
-                <div class="college-cards" id="collegeCards">
-                    <!-- College predictions will be inserted here -->
+                <h3 class="college-title">Predicted Colleges</h3>
+                <div class="college-cards">
+                    <div class="college-card">
+                        <div class="college-name">AIIMS Delhi</div>
+                        <div class="college-score">Cutoff: 680</div>
+                    </div>
+                    <div class="college-card">
+                        <div class="college-name">Maulana Azad</div>
+                        <div class="college-score">Cutoff: 650</div>
+                    </div>
+                    <div class="college-card">
+                        <div class="college-name">King George's</div>
+                        <div class="college-score">Cutoff: 640</div>
+                    </div>
+                    <div class="college-card">
+                        <div class="college-name">Safdarjung</div>
+                        <div class="college-score">Cutoff: 630</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="results-message" id="resultsMessage">
-                <!-- Results message will be inserted here -->
+            <div class="results-message">
+                <p>Great effort! Keep practicing to improve your score.</p>
             </div>
         </div>
     </div>
 
-    <!-- Confetti Container -->
-    <canvas id="confettiCanvas" class="confetti hidden"></canvas>
+    <div id="confetti" class="confetti"></div>
 
     <script>
-        // Generate 180 questions based on the provided chapters
-        const generateQuestions = () => {
-            const questions = [];
-            
-            // Physics questions (45)
-            const physicsChapters = [
-                "Revision",
-                "Ch - 1 : मापक एवं मापन",
-                "Ch - 2 : गणितीय उपकरण",
-                "Ch - 3 : सरल रेखा में गति",
-                "Ch - 4 : समतल में गति",
-                "Ch - 5 : गति के नियम",
-                "Ch - 6 : कार्य, ऊर्जा एवं शक्ति",
-                "Ch - 7 : कणों के निकाय तथा घूर्णी गति",
-                "Ch - 8 : गुरुत्वाकर्षण",
-                "Ch - 9 : ठोसों के यांत्रिक गुण",
-                "Ch - 10 : तरलों के यांत्रिक गुण",
-                "Ch - 11 : द्रवों के गुण",
-                "Ch - 12 : ऊष्मागतिकी",
-                "Ch - 13 : अणुगति सिद्धांत",
-                "Ch - 14 : दोलन",
-                "Ch - 15 : तरंग गति"
-            ];
-            
-            // Chemistry questions (45)
-            const chemistryChapters = [
-                "Revision",
-                "Ch - 1 : रसायन विज्ञान की कुछ मूल अवधारणाएँ",
-                "Ch - 2 : परमाणु की संरचना",
-                "Ch - 3 : तत्वों का वर्गीकरण एवं गुणधर्मों में आवर्तिता",
-                "Ch - 4 : रासायनिक आबंधन एवं आण्विक संरचना",
-                "Ch - 5 : द्रव्य की अवस्थाएँ",
-                "Ch - 6 : ऊष्मागतिकी",
-                "Ch - 7 : साम्यावस्था",
-                "Ch - 8 : अपगलन",
-                "Ch - 9 : हाइड्रोजन",
-                "Ch - 10 : s-ब्लॉक तत्व",
-                "Ch - 11 : p-ब्लॉक तत्व",
-                "Ch - 12 : कार्बनिक रसायन : कुछ आधारभूत सिद्धांत एवं तकनीकें",
-                "Ch - 13 : हाइड्रोकार्बन",
-                "Ch - 14 : पर्यावरणीय रसायन"
-            ];
-            
-            // Botany questions (45)
-            const botanyChapters = [
-                "Revision",
-                "Ch - 1 : जीव जगत",
-                "Ch - 2 : जैव वर्गीकरण",
-                "Ch - 3 : वनस्पति जगत",
-                "Ch - 4 : पुष्पी पादपों की आकारिकी",
-                "Ch - 5 : पुष्पी पादपों का शारीर",
-                "Ch - 6 : कोशिका : जीवन की इकाई",
-                "Ch - 7 : कोशिका चक्र एवं कोशिका विभाजन",
-                "Ch - 8 : पादप में पोषण",
-                "Ch - 9 : पादप में श्वसन",
-                "Ch - 10 : पादप वृद्धि एवं परिवर्धन",
-                "Ch - 11 : खनिज पोषण",
-                "Ch - 12 : प्रकाश संश्लेषण",
-                "Ch - 13 : पादप में परिवहन"
-            ];
-            
-            // Zoology questions (45)
-            const zoologyChapters = [
-                "Revision",
-                "Ch - 1 : जंतु जगत",
-                "Ch - 2 : जंतुओं का शारीरिक विज्ञान",
-                "Ch - 3 : संरचनात्मक संगठन",
-                "Ch - 3 : तंत्रिका नियंत्रण एवं समन्वय",
-                "Ch - 5 : रासायनिक समन्वय एवं एकीकरण",
-                "Ch - 6 : पेशीय संकुचन एवं गति",
-                "Ch - 7 : मानव स्वास्थ्य एवं रोग",
-                "Ch - 8 : मानव में प्रजनन",
-                "Ch - 9 : जैव-विकास",
-                "Ch - 10 : आनुवंशिकी एवं विकास",
-                "Ch - 11 : जैव प्रौद्योगिकी के सिद्धांत",
-                "Ch - 12 : जैव प्रौद्योगिकी एवं उसके उपयोग",
-                "Ch - 13 : मानव कल्याण में सूक्ष्मजीव"
-            ];
-            
-            // Generate questions for each subject
-            const subjects = [
-                { name: "physics", chapters: physicsChapters, count: 45 },
-                { name: "chemistry", chapters: chemistryChapters, count: 45 },
-                { name: "botany", chapters: botanyChapters, count: 45 },
-                { name: "zoology", chapters: zoologyChapters, count: 45 }
-            ];
-            
-            let questionId = 1;
-            
-            subjects.forEach(subject => {
-                for (let i = 0; i < subject.count; i++) {
-                    const chapterIndex = i % subject.chapters.length;
-                    questions.push({
-                        id: questionId++,
-                        subject: subject.name,
-                        chapter: subject.chapters[chapterIndex],
-                        text: `This is a sample question from ${subject.name} chapter "${subject.chapters[chapterIndex]}". The question text would appear here.`,
-                        options: ["Option A", "Option B", "Option C", "Option D"],
-                        correctAnswer: Math.floor(Math.random() * 4) // Random correct answer for demo
-                    });
-                }
-            });
-            
-            return questions;
-        };
-
-        // Global variables
-        let questions = [];
-        let currentQuestionIndex = 0;
-        let userAnswers = [];
-        let timeLeft = 3 * 60 * 60; // 3 hours in seconds
-        let timerInterval;
-        let userName = "";
-        let userAge = "";
-        let userClass = "";
-        let userDOB = "";
-        let subjectFilter = 'all';
-
-        // DOM elements
+        // DOM Elements
         const testScreen = document.getElementById('testScreen');
         const userModal = document.getElementById('userModal');
         const countdownOverlay = document.getElementById('countdownOverlay');
         const confirmationModal = document.getElementById('confirmationModal');
         const resultsModal = document.getElementById('resultsModal');
-        const confettiCanvas = document.getElementById('confettiCanvas');
+        const userName = document.getElementById('userName');
+        const userAge = document.getElementById('userAge');
+        const userClass = document.getElementById('userClass');
+        const userDOB = document.getElementById('userDOB');
+        const startNowBtn = document.getElementById('startNowBtn');
+        const finishTestBtn = document.getElementById('finishTestBtn');
+        const confirmFinish = document.getElementById('confirmFinish');
+        const cancelFinish = document.getElementById('cancelFinish');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const questionGrid = document.getElementById('questionGrid');
+        const currentQuestion = document.getElementById('currentQuestion');
+        const timer = document.getElementById('timer');
+        const attemptedCount = document.getElementById('attemptedCount');
+        const skippedCountDisplay = document.getElementById('skippedCountDisplay');
+        const enBtn = document.getElementById('enBtn');
+        const hiBtn = document.getElementById('hiBtn');
+        const subjectButtons = document.querySelectorAll('.subject-btn');
+        const userNameDisplay = document.getElementById('userNameDisplay');
+        const userDetailsDisplay = document.getElementById('userDetailsDisplay');
+        const nameSuggestion = document.getElementById('nameSuggestion');
+        const suggestionName = document.getElementById('suggestionName');
+        const acceptSuggestion = document.getElementById('acceptSuggestion');
+        const rejectSuggestion = document.getElementById('rejectSuggestion');
+        const currentSubject = document.getElementById('currentSubject');
+        
+        // Test state
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = Array(180).fill(null);
+        let skippedQuestions = Array(180).fill(true);
+        let testStartTime;
+        let testDuration = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
+        let timerInterval;
+        let isHindi = false;
+        let subjectTime = {
+            physics: 0,
+            chemistry: 0,
+            botany: 0,
+            zoology: 0
+        };
+        let subjectStartTime;
+        let currentSubjectType = '';
 
-        // Initialize the application
-        const initApp = () => {
-            // Generate questions
-            questions = generateQuestions();
-            
-            // Initialize user answers array
-            userAnswers = new Array(questions.length).fill(null);
-            
-            // Set up event listeners
-            setupEventListeners();
-            
-            // Render question grid
+        // Initialize the app
+        function init() {
+            generateQuestions();
             renderQuestionGrid();
-            
-            // Show first question
-            showQuestion(0);
-            
-            // Update progress
+            updateQuestionNavigation();
             updateProgress();
-        };
-
-        // Set up event listeners
-        const setupEventListeners = () => {
-            // Start test button
-            document.getElementById('startNowBtn').addEventListener('click', startTest);
             
-            // Navigation buttons
-            document.getElementById('prevBtn').addEventListener('click', () => navigateQuestion(-1));
-            document.getElementById('nextBtn').addEventListener('click', () => navigateQuestion(1));
+            // Event listeners
+            startNowBtn.addEventListener('click', startTest);
+            finishTestBtn.addEventListener('click', showConfirmation);
+            confirmFinish.addEventListener('click', finishTest);
+            cancelFinish.addEventListener('click', hideConfirmation);
+            prevBtn.addEventListener('click', goToPreviousQuestion);
+            nextBtn.addEventListener('click', goToNextQuestion);
+            enBtn.addEventListener('click', () => switchLanguage(false));
+            hiBtn.addEventListener('click', () => switchLanguage(true));
+            subjectButtons.forEach(btn => {
+                btn.addEventListener('click', () => filterQuestions(btn.dataset.subject));
+            });
             
-            // Finish test button
-            document.getElementById('finishTestBtn').addEventListener('click', showConfirmationModal);
+            // Name autofill suggestion
+            userName.addEventListener('input', checkNameSuggestion);
+            acceptSuggestion.addEventListener('click', acceptNameSuggestion);
+            rejectSuggestion.addEventListener('click', rejectNameSuggestion);
             
-            // Confirmation modal buttons
-            document.getElementById('confirmFinish').addEventListener('click', finishTest);
-            document.getElementById('cancelFinish').addEventListener('click', hideConfirmationModal);
-            
-            // Subject filter buttons
-            document.querySelectorAll('.subject-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.subject-btn').forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    subjectFilter = e.target.dataset.subject;
-                    filterQuestions(subjectFilter);
+            // Auto-fill animation for inputs
+            const autoFillInputs = document.querySelectorAll('.auto-fill');
+            autoFillInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    this.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
+                    setTimeout(() => {
+                        this.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                    }, 800);
                 });
             });
-            
-            // Language toggle buttons
-            document.getElementById('enBtn').addEventListener('click', () => {
-                document.getElementById('enBtn').classList.add('active');
-                document.getElementById('hiBtn').classList.remove('active');
-            });
-            
-            document.getElementById('hiBtn').addEventListener('click', () => {
-                document.getElementById('hiBtn').classList.add('active');
-                document.getElementById('enBtn').classList.remove('active');
-            });
-            
-            // Name input suggestions
-            document.getElementById('userName').addEventListener('input', (e) => {
-                const name = e.target.value.toLowerCase();
-                
-                if (name === 'khu' || name === 'khus' || name === 'khush' || name === 'khushi') {
-                    document.getElementById('nameSuggestion').style.display = 'block';
-                    document.getElementById('suggestionName').textContent = 'Khushi';
-                } else if (name === 'anc' || name === 'anch' || name === 'ancha' || name === 'anchal') {
-                    document.getElementById('nameSuggestion').style.display = 'block';
-                    document.getElementById('suggestionName').textContent = 'Anchal';
-                } else {
-                    document.getElementById('nameSuggestion').style.display = 'none';
-                }
-            });
-            
-            document.getElementById('acceptSuggestion').addEventListener('click', () => {
-                const suggestedName = document.getElementById('suggestionName').textContent;
-                document.getElementById('userName').value = suggestedName;
-                
-                // Auto-fill details based on the suggested name
-                if (suggestedName === 'Khushi') {
-                    document.getElementById('userAge').value = '20';
-                    document.getElementById('userClass').value = 'Dropper';
-                    document.getElementById('userDOB').value = '2005-03-18';
-                } else if (suggestedName === 'Anchal') {
-                    document.getElementById('userAge').value = '20';
-                    document.getElementById('userClass').value = 'Dropper';
-                    document.getElementById('userDOB').value = '2005-03-18';
-                }
-                
-                document.getElementById('nameSuggestion').style.display = 'none';
-            });
-            
-            document.getElementById('rejectSuggestion').addEventListener('click', () => {
-                document.getElementById('nameSuggestion').style.display = 'none';
-            });
-        };
+        }
 
-        // Start the test
-        const startTest = () => {
-            // Get user info
-            userName = document.getElementById('userName').value || 'Student';
-            userAge = document.getElementById('userAge').value || '';
-            userClass = document.getElementById('userClass').value || '';
-            userDOB = document.getElementById('userDOB').value || '';
-            
-            // Update user info display
-            document.getElementById('userNameDisplay').textContent = userName;
-            document.getElementById('userDetailsDisplay').textContent = userClass || 'NEET Aspirant';
-            
-            // Hide user modal
-            userModal.classList.remove('active');
-            
-            // Show countdown
-            countdownOverlay.classList.add('active');
-            
-            // Start countdown
-            let countdown = 3;
-            document.getElementById('countdownNumber').textContent = countdown;
-            
-            const countdownInterval = setInterval(() => {
-                countdown--;
-                
-                if (countdown > 0) {
-                    document.getElementById('countdownNumber').textContent = countdown;
-                } else {
-                    clearInterval(countdownInterval);
-                    countdownOverlay.classList.remove('active');
-                    
-                    // Show test screen
-                    testScreen.classList.remove('hidden');
-                    
-                    // Start timer
-                    startTimer();
-                }
-            }, 1000);
-        };
-
-        // Start the timer
-        const startTimer = () => {
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    finishTest();
-                }
-                
-                updateTimerDisplay();
-            }, 1000);
-        };
-
-        // Update timer display
-        const updateTimerDisplay = () => {
-            const hours = Math.floor(timeLeft / 3600);
-            const minutes = Math.floor((timeLeft % 3600) / 60);
-            const seconds = timeLeft % 60;
-            
-            document.getElementById('timer').textContent = 
-                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        };
-
-        // Show question
-        const showQuestion = (index) => {
-            if (index < 0 || index >= questions.length) return;
-            
-            currentQuestionIndex = index;
-            const question = questions[index];
-            
-            // Update question number
-            document.getElementById('currentQuestion').textContent = index + 1;
-            
-            // Update question text
-            document.getElementById('questionText').textContent = question.text;
-            
-            // Update options
-            const optionsContainer = document.getElementById('optionsContainer');
-            optionsContainer.innerHTML = '';
-            
-            question.options.forEach((option, i) => {
-                const optionElement = document.createElement('div');
-                optionElement.className = 'option';
-                if (userAnswers[index] === i) {
-                    optionElement.classList.add('selected');
-                }
-                optionElement.textContent = option;
-                optionElement.dataset.optionIndex = i;
-                
-                optionElement.addEventListener('click', () => {
-                    document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-                    optionElement.classList.add('selected');
-                    userAnswers[index] = i;
-                    updateProgress();
-                });
-                
-                optionsContainer.appendChild(optionElement);
-            });
-            
-            // Update navigation buttons
-            document.getElementById('prevBtn').disabled = index === 0;
-            document.getElementById('nextBtn').disabled = index === questions.length - 1;
-            
-            // Update question grid
-            updateQuestionGrid();
-        };
-
-        // Navigate to next/previous question
-        const navigateQuestion = (direction) => {
-            showQuestion(currentQuestionIndex + direction);
-        };
-
-        // Render question grid
-        const renderQuestionGrid = () => {
-            const questionGrid = document.getElementById('questionGrid');
-            questionGrid.innerHTML = '';
-            
-            questions.forEach((_, index) => {
-                const button = document.createElement('button');
-                button.className = 'grid-btn';
-                button.textContent = index + 1;
-                
-                button.addEventListener('click', () => {
-                    showQuestion(index);
-                });
-                
-                questionGrid.appendChild(button);
-            });
-        };
-
-        // Update question grid
-        const updateQuestionGrid = () => {
-            document.querySelectorAll('.grid-btn').forEach((btn, index) => {
-                btn.classList.remove('current', 'answered', 'skipped');
-                
-                if (index === currentQuestionIndex) {
-                    btn.classList.add('current');
-                }
-                
-                if (userAnswers[index] !== null) {
-                    btn.classList.add('answered');
-                }
-            });
-        };
-
-        // Update progress
-        const updateProgress = () => {
-            const answeredCount = userAnswers.filter(answer => answer !== null).length;
-            const skippedCount = userAnswers.length - answeredCount;
-            
-            document.getElementById('attemptedCount').textContent = answeredCount;
-            document.getElementById('skippedCountDisplay').textContent = skippedCount;
-        };
-
-        // Filter questions by subject
-        const filterQuestions = (subject) => {
-            if (subject === 'all') {
-                document.querySelectorAll('.grid-btn').forEach(btn => {
-                    btn.style.display = 'flex';
-                });
-                return;
-            }
-            
-            document.querySelectorAll('.grid-btn').forEach((btn, index) => {
-                if (questions[index].subject === subject) {
-                    btn.style.display = 'flex';
-                } else {
-                    btn.style.display = 'none';
-                }
-            });
-        };
-
-        // Show confirmation modal
-        const showConfirmationModal = () => {
-            confirmationModal.classList.add('active');
-        };
-
-        // Hide confirmation modal
-        const hideConfirmationModal = () => {
-            confirmationModal.classList.remove('active');
-        };
-
-        // Finish test
-        const finishTest = () => {
-            clearInterval(timerInterval);
-            hideConfirmationModal();
-            testScreen.classList.add('hidden');
-            calculateResults();
-            showResults();
-        };
-
-        // Calculate results
-        const calculateResults = () => {
-            let correctCount = 0;
-            let incorrectCount = 0;
-            let skippedCount = 0;
-            
-            userAnswers.forEach((answer, index) => {
-                if (answer === null) {
-                    skippedCount++;
-                } else if (answer === questions[index].correctAnswer) {
-                    correctCount++;
-                } else {
-                    incorrectCount++;
-                }
-            });
-            
-            const score = correctCount * 4; // +4 for correct, -1 for incorrect, 0 for skipped
-            const accuracy = correctCount / (correctCount + incorrectCount) * 100 || 0;
-            
-            // Update results display
-            document.getElementById('correctCount').textContent = correctCount;
-            document.getElementById('incorrectCount').textContent = incorrectCount;
-            document.getElementById('skippedCount').textContent = skippedCount;
-            document.getElementById('scoreValue').textContent = score;
-            document.getElementById('accuracyValue').textContent = accuracy.toFixed(1) + '%';
-            
-            // Update score circle
-            const scorePercentage = (score / 720) * 100;
-            document.getElementById('scoreCircle').style.background = `conic-gradient(var(--accent-1) ${scorePercentage}%, var(--accent-2) 0%)`;
-            
-            // Generate subject-wise performance
-            generateSubjectPerformance();
-            
-            // Generate performance charts
-            generatePerformanceCharts();
-            
-            // Generate college predictions
-            generateCollegePredictions(score);
-            
-            // Set results message
-            setResultsMessage(score);
-        };
-
-        // Generate subject-wise performance
-        const generateSubjectPerformance = () => {
-            const subjectStats = document.getElementById('subjectStats');
-            subjectStats.innerHTML = '';
-            
+        // Generate sample questions
+        function generateQuestions() {
             const subjects = ['physics', 'chemistry', 'botany', 'zoology'];
             const subjectNames = {
                 physics: 'Physics',
@@ -1627,244 +1402,447 @@
                 zoology: 'Zoology'
             };
             
-            subjects.forEach(subject => {
-                const subjectQuestions = questions.filter(q => q.subject === subject);
-                const subjectAnswers = userAnswers.slice(
-                    questions.findIndex(q => q.subject === subject),
-                    questions.findIndex(q => q.subject === subject) + subjectQuestions.length
-                );
-                
-                let correct = 0;
-                let incorrect = 0;
-                let skipped = 0;
-                
-                subjectAnswers.forEach((answer, index) => {
-                    if (answer === null) {
-                        skipped++;
-                    } else if (answer === subjectQuestions[index].correctAnswer) {
-                        correct++;
-                    } else {
-                        incorrect++;
-                    }
+            for (let i = 0; i < 180; i++) {
+                const subject = subjects[i % 4];
+                questions.push({
+                    id: i + 1,
+                    subject: subject,
+                    subjectName: subjectNames[subject],
+                    question: `This is a sample question for ${subjectNames[subject]}. Which of the following options is correct?`,
+                    options: [
+                        'Option A',
+                        'Option B',
+                        'Option C',
+                        'Option D'
+                    ],
+                    correctAnswer: Math.floor(Math.random() * 4)
                 });
-                
-                const accuracy = correct / (correct + incorrect) * 100 || 0;
-                
-                const subjectStat = document.createElement('div');
-                subjectStat.className = 'subject-stat';
-                subjectStat.innerHTML = `
-                    <div class="subject-name">${subjectNames[subject]}</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${accuracy}%"></div>
-                    </div>
-                    <div style="margin-top: 8px; font-size: 14px;">
-                        ${correct}/${subjectQuestions.length} (${accuracy.toFixed(1)}%)
-                    </div>
-                `;
-                
-                subjectStats.appendChild(subjectStat);
-            });
-        };
-
-        // Generate performance charts
-        const generatePerformanceCharts = () => {
-            const chartsContainer = document.getElementById('chartsContainer');
-            chartsContainer.innerHTML = '';
-            
-            // Accuracy over time chart
-            const accuracyChart = document.createElement('div');
-            accuracyChart.className = 'chart';
-            accuracyChart.innerHTML = `
-                <div class="chart-title">Accuracy Over Time</div>
-                <div class="chart-bars">
-                    <div class="chart-bar-container">
-                        <div class="chart-bar" style="height: 70%"></div>
-                        <div class="chart-label">1st</div>
-                    </div>
-                    <div class="chart-bar-container">
-                        <div class="chart-bar" style="height: 85%"></div>
-                        <div class="chart-label">2nd</div>
-                    </div>
-                    <div class="chart-bar-container">
-                        <div class="chart-bar" style="height: 65%"></div>
-                        <div class="chart-label">3rd</div>
-                    </div>
-                    <div class="chart-bar-container">
-                        <div class="chart-bar" style="height: 90%"></div>
-                        <div class="chart-label">Final</div>
-                    </div>
-                </div>
-            `;
-            
-            // Subject comparison chart
-            const subjectChart = document.createElement('div');
-            subjectChart.className = 'chart';
-            subjectChart.innerHTML = `
-                <div class="chart-title">Subject Comparison</div>
-                <div class="chart-bars">
-                    <div class="chart-bar-container">
-                        <div class="chart-bar" style="height: 75%"></div>
-                        <div class="chart-label">Phy</div>
-                    </div>
-                    <div class="chart-bar-container">
-                        <div class="chart-bar" style="height: 85%"></div>
-                        <div class="chart-label">Chem</div>
-                    </div>
-                    <div class="chart-bar-container">
-                        <div class="chart-bar" style="height: 65%"></div>
-                        <div class="chart-label">Bot</div>
-                    </div>
-                    <div class="chart-bar-container">
-                        <div class="chart-bar" style="height: 80%"></div>
-                        <div class="chart-label">Zoo</div>
-                    </div>
-                </div>
-            `;
-            
-            chartsContainer.appendChild(accuracyChart);
-            chartsContainer.appendChild(subjectChart);
-            
-            // Animate the bars
-            setTimeout(() => {
-                document.querySelectorAll('.chart-bar').forEach(bar => {
-                    bar.style.transition = 'height 1.5s ease';
-                });
-            }, 100);
-        };
-
-        // Generate college predictions
-        const generateCollegePredictions = (score) => {
-            const collegeCards = document.getElementById('collegeCards');
-            collegeCards.innerHTML = '';
-            
-            const colleges = [
-                { name: 'AIIMS Delhi', score: 680, color: '#4ade80' },
-                { name: 'Maulana Azad Medical College', score: 650, color: '#60a5fa' },
-                { name: 'Armed Forces Medical College', score: 630, color: '#f87171' },
-                { name: 'Grant Medical College', score: 600, color: '#c084fc' }
-            ];
-            
-            colleges.forEach(college => {
-                const collegeCard = document.createElement('div');
-                collegeCard.className = 'college-card';
-                collegeCard.innerHTML = `
-                    <div class="college-name">${college.name}</div>
-                    <div class="college-score">Cutoff: ${college.score}</div>
-                `;
-                
-                collegeCards.appendChild(collegeCard);
-            });
-        };
-
-        // Set results message
-        const setResultsMessage = (score) => {
-            const resultsMessage = document.getElementById('resultsMessage');
-            
-            if (score >= 600) {
-                resultsMessage.innerHTML = `
-                    <h3>Excellent Work!</h3>
-                    <p>Your score of ${score} is outstanding. With this performance, you have a very good chance of getting into top medical colleges. Keep up the great work!</p>
-                `;
-            } else if (score >= 500) {
-                resultsMessage.innerHTML = `
-                    <h3>Good Job!</h3>
-                    <p>Your score of ${score} is good. With some more practice and focus on weaker areas, you can improve your chances significantly.</p>
-                `;
-            } else {
-                resultsMessage.innerHTML = `
-                    <h3>Keep Practicing!</h3>
-                    <p>Your score of ${score} indicates that you need to focus more on your preparation. Identify your weak areas and practice more to improve your performance.</p>
-                `;
             }
-        };
+        }
+
+        // Render question grid
+        function renderQuestionGrid() {
+            questionGrid.innerHTML = '';
+            questions.forEach((question, index) => {
+                const button = document.createElement('button');
+                button.className = `grid-btn ${question.subject}`;
+                button.textContent = index + 1;
+                button.addEventListener('click', () => goToQuestion(index));
+                questionGrid.appendChild(button);
+            });
+        }
+
+        // Update question navigation
+        function updateQuestionNavigation() {
+            // Update grid buttons
+            const gridButtons = document.querySelectorAll('.grid-btn');
+            gridButtons.forEach((button, index) => {
+                button.classList.remove('answered', 'skipped', 'current');
+                
+                if (userAnswers[index] !== null) {
+                    button.classList.add('answered');
+                } else if (skippedQuestions[index]) {
+                    button.classList.add('skipped');
+                }
+                
+                if (index === currentQuestionIndex) {
+                    button.classList.add('current');
+                }
+            });
+            
+            // Update prev/next buttons
+            prevBtn.disabled = currentQuestionIndex === 0;
+            nextBtn.disabled = currentQuestionIndex === questions.length - 1;
+            
+            // Update current question number
+            currentQuestion.textContent = currentQuestionIndex + 1;
+            
+            // Update current subject indicator
+            const currentQ = questions[currentQuestionIndex];
+            currentSubject.textContent = currentQ.subjectName;
+            currentSubjectType = currentQ.subject;
+            
+            // Start tracking time for this subject
+            if (subjectStartTime) {
+                const timeSpent = Date.now() - subjectStartTime;
+                subjectTime[currentSubjectType] += timeSpent;
+            }
+            subjectStartTime = Date.now();
+        }
+
+        // Update progress
+        function updateProgress() {
+            const attempted = userAnswers.filter(answer => answer !== null).length;
+            const skipped = skippedQuestions.filter(skipped => skipped).length;
+            
+            attemptedCount.textContent = attempted;
+            skippedCountDisplay.textContent = skipped;
+        }
+
+        // Render current question
+        function renderQuestion() {
+            const question = questions[currentQuestionIndex];
+            
+            // Update question text
+            questionText.textContent = isHindi ? 
+                `यह ${question.subjectName} का एक सैंपल प्रश्न है। निम्नलिखित में से कौन सा विकल्प सही है?` : 
+                question.question;
+            
+            // Update options
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                if (userAnswers[currentQuestionIndex] === index) {
+                    optionElement.classList.add('selected');
+                }
+                optionElement.textContent = isHindi ? 
+                    ['विकल्प क', 'विकल्प ख', 'विकल्प ग', 'विकल्प घ'][index] : 
+                    option;
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            updateQuestionNavigation();
+        }
+
+        // Select option
+        function selectOption(index) {
+            userAnswers[currentQuestionIndex] = index;
+            skippedQuestions[currentQuestionIndex] = false;
+            renderQuestion();
+            updateProgress();
+        }
+
+        // Go to specific question
+        function goToQuestion(index) {
+            // Update time spent on current subject
+            if (subjectStartTime) {
+                const timeSpent = Date.now() - subjectStartTime;
+                subjectTime[currentSubjectType] += timeSpent;
+            }
+            
+            currentQuestionIndex = index;
+            renderQuestion();
+            
+            // Update subject start time
+            subjectStartTime = Date.now();
+            currentSubjectType = questions[currentQuestionIndex].subject;
+        }
+
+        // Go to previous question
+        function goToPreviousQuestion() {
+            if (currentQuestionIndex > 0) {
+                goToQuestion(currentQuestionIndex - 1);
+            }
+        }
+
+        // Go to next question
+        function goToNextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                goToQuestion(currentQuestionIndex + 1);
+            }
+        }
+
+        // Switch language
+        function switchLanguage(hindi) {
+            isHindi = hindi;
+            enBtn.classList.toggle('active', !hindi);
+            hiBtn.classList.toggle('active', hindi);
+            renderQuestion();
+        }
+
+        // Filter questions by subject
+        function filterQuestions(subject) {
+            subjectButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-subject="${subject}"]`).classList.add('active');
+            
+            if (subject === 'all') {
+                const gridButtons = document.querySelectorAll('.grid-btn');
+                gridButtons.forEach(btn => btn.style.display = 'flex');
+                return;
+            }
+            
+            const gridButtons = document.querySelectorAll('.grid-btn');
+            gridButtons.forEach((btn, index) => {
+                btn.style.display = questions[index].subject === subject ? 'flex' : 'none';
+            });
+        }
+
+        // Check name suggestion
+        function checkNameSuggestion() {
+            const name = userName.value.toLowerCase();
+            if (name.includes('khu') || name.includes('kushi') || name.includes('khus') || name.includes('pimi')) {
+                suggestionName.textContent = 'Khushi';
+                nameSuggestion.classList.add('show');
+            } else if (name.includes('anc') || name.includes('anch') || name.includes('ancha') || name.includes('anchal')) {
+                suggestionName.textContent = 'Anchal';
+                nameSuggestion.classList.add('show');
+            } else {
+                nameSuggestion.classList.remove('show');
+            }
+        }
+
+        // Accept name suggestion
+        function acceptNameSuggestion() {
+            const name = suggestionName.textContent;
+            userName.value = name;
+            nameSuggestion.classList.remove('show');
+            
+            // Smooth autofill for other fields
+            if (name === 'Khushi') {
+                setTimeout(() => {
+                    userAge.value = '19';
+                    userAge.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
+                    setTimeout(() => {
+                        userAge.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                    }, 800);
+                }, 200);
+                
+                setTimeout(() => {
+                    userClass.value = '12th PCMB';
+                    userClass.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
+                    setTimeout(() => {
+                        userClass.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                    }, 800);
+                }, 400);
+                
+                setTimeout(() => {
+                    userDOB.value = '2005-03-18';
+                    userDOB.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
+                    setTimeout(() => {
+                        userDOB.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                    }, 800);
+                }, 600);
+            } else if (name === 'Anchal') {
+                setTimeout(() => {
+                    userAge.value = '20';
+                    userAge.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
+                    setTimeout(() => {
+                        userAge.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                    }, 800);
+                }, 200);
+                
+                setTimeout(() => {
+                    userClass.value = 'Dropper';
+                    userClass.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
+                    setTimeout(() => {
+                        userClass.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                    }, 800);
+                }, 400);
+                
+                setTimeout(() => {
+                    userDOB.value = '2004-05-22';
+                    userDOB.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
+                    setTimeout(() => {
+                        userDOB.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                    }, 800);
+                }, 600);
+            }
+        }
+
+        // Reject name suggestion
+        function rejectNameSuggestion() {
+            nameSuggestion.classList.remove('show');
+        }
+
+        // Start test
+        function startTest() {
+            if (!userName.value.trim()) {
+                userName.style.borderColor = 'red';
+                return;
+            }
+            
+            userNameDisplay.textContent = userName.value;
+            userDetailsDisplay.textContent = `${userAge.value} years, ${userClass.value}`;
+            
+            userModal.classList.remove('active');
+            countdownOverlay.classList.add('active');
+            
+            let count = 3;
+            const countdownNumber = document.getElementById('countdownNumber');
+            countdownNumber.textContent = count;
+            
+            const countdownInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    countdownNumber.textContent = count;
+                } else {
+                    clearInterval(countdownInterval);
+                    countdownOverlay.classList.remove('active');
+                    testScreen.classList.remove('hidden');
+                    
+                    // Start timer
+                    testStartTime = Date.now();
+                    startTimer();
+                    
+                    // Render first question
+                    renderQuestion();
+                }
+            }, 1000);
+        }
+
+        // Start timer
+        function startTimer() {
+            clearInterval(timerInterval);
+            
+            timerInterval = setInterval(() => {
+                const elapsed = Date.now() - testStartTime;
+                const remaining = testDuration - elapsed;
+                
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    timer.textContent = '00:00:00';
+                    finishTest();
+                    return;
+                }
+                
+                const hours = Math.floor(remaining / (1000 * 60 * 60));
+                const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+                
+                timer.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // Show confirmation
+        function showConfirmation() {
+            confirmationModal.classList.add('active');
+        }
+
+        // Hide confirmation
+        function hideConfirmation() {
+            confirmationModal.classList.remove('active');
+        }
+
+        // Finish test
+        function finishTest() {
+            // Update time spent on current subject
+            if (subjectStartTime) {
+                const timeSpent = Date.now() - subjectStartTime;
+                subjectTime[currentSubjectType] += timeSpent;
+            }
+            
+            clearInterval(timerInterval);
+            testScreen.classList.add('hidden');
+            showResults();
+        }
 
         // Show results
-        const showResults = () => {
-            resultsModal.classList.add('active');
-            startConfetti();
+        function showResults() {
+            // Calculate scores
+            let correct = 0;
+            let incorrect = 0;
+            let skipped = 0;
             
-            // Animate the progress bars after a short delay
-            setTimeout(() => {
-                document.querySelectorAll('.progress-fill').forEach(bar => {
-                    const width = bar.style.width;
-                    bar.style.width = '0';
-                    setTimeout(() => {
-                        bar.style.width = width;
-                    }, 100);
-                });
-            }, 500);
-        };
-
-        // Confetti animation
-        const startConfetti = () => {
-            confettiCanvas.classList.remove('hidden');
-            const canvas = confettiCanvas;
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            const confettiPieces = [];
-            const confettiColors = ['#b9a3ff', '#d9b7ff', '#4ade80', '#60a5fa', '#f87171', '#fbbf24'];
-            
-            // Create confetti pieces
-            for (let i = 0; i < 150; i++) {
-                confettiPieces.push({
-                    x: Math.random() * canvas.width,
-                    y: -Math.random() * canvas.height,
-                    size: Math.random() * 10 + 5,
-                    color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
-                    speed: Math.random() * 3 + 2,
-                    angle: Math.random() * 360,
-                    rotation: Math.random() * 360,
-                    rotationSpeed: Math.random() * 10 - 5
-                });
-            }
-            
-            let animationFrame;
-            let opacity = 1;
-            
-            const drawConfetti = () => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Update and draw confetti
-                confettiPieces.forEach(confetti => {
-                    ctx.save();
-                    ctx.translate(confetti.x, confetti.y);
-                    ctx.rotate(confetti.rotation * Math.PI / 180);
-                    
-                    ctx.fillStyle = confetti.color;
-                    ctx.globalAlpha = opacity;
-                    ctx.fillRect(-confetti.size / 2, -confetti.size / 2, confetti.size, confetti.size);
-                    
-                    ctx.restore();
-                    
-                    // Update position
-                    confetti.y += confetti.speed;
-                    confetti.x += Math.sin(confetti.angle * Math.PI / 180) * 2;
-                    confetti.rotation += confetti.rotationSpeed;
-                    
-                    // Reset if out of screen
-                    if (confetti.y > canvas.height) {
-                        confetti.y = -confetti.size;
-                        confetti.x = Math.random() * canvas.width;
-                    }
-                });
-                
-                // Gradually reduce opacity for smooth fade-out
-                if (opacity > 0) {
-                    opacity -= 0.005;
-                    animationFrame = requestAnimationFrame(drawConfetti);
-                } else {
-                    confettiCanvas.classList.add('hidden');
-                    cancelAnimationFrame(animationFrame);
-                }
+            const subjectScores = {
+                physics: { correct: 0, total: 0 },
+                chemistry: { correct: 0, total: 0 },
+                botany: { correct: 0, total: 0 },
+                zoology: { correct: 0, total: 0 }
             };
             
-            drawConfetti();
-        };
+            userAnswers.forEach((answer, index) => {
+                const question = questions[index];
+                subjectScores[question.subject].total++;
+                
+                if (answer === null) {
+                    skipped++;
+                } else if (answer === question.correctAnswer) {
+                    correct++;
+                    subjectScores[question.subject].correct++;
+                } else {
+                    incorrect++;
+                }
+            });
+            
+            const totalScore = correct * 4;
+            const accuracy = correct / (correct + incorrect) * 100 || 0;
+            
+            // Update result elements
+            document.getElementById('scoreValue').textContent = totalScore;
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('incorrectCount').textContent = incorrect;
+            document.getElementById('skippedCount').textContent = skipped;
+            document.getElementById('accuracyValue').textContent = `${accuracy.toFixed(1)}%`;
+            
+            // Update subject scores
+            const updateSubjectScore = (subjectId, correct, total) => {
+                const percentage = (correct / total) * 100 || 0;
+                document.getElementById(subjectId).style.width = `${percentage}%`;
+            };
+            
+            updateSubjectScore('physicsScore', subjectScores.physics.correct, subjectScores.physics.total);
+            updateSubjectScore('chemistryScore', subjectScores.chemistry.correct, subjectScores.chemistry.total);
+            updateSubjectScore('botanyScore', subjectScores.botany.correct, subjectScores.botany.total);
+            updateSubjectScore('zoologyScore', subjectScores.zoology.correct, subjectScores.zoology.total);
+            
+            // Update charts with animation
+            setTimeout(() => {
+                document.getElementById('physicsChart').style.height = `${(subjectScores.physics.correct / 45) * 100}%`;
+                document.getElementById('chemistryChart').style.height = `${(subjectScores.chemistry.correct / 45) * 100}%`;
+                document.getElementById('botanyChart').style.height = `${(subjectScores.botany.correct / 45) * 100}%`;
+                document.getElementById('zoologyChart').style.height = `${(subjectScores.zoology.correct / 45) * 100}%`;
+                
+                // Calculate time percentages
+                const totalTime = Object.values(subjectTime).reduce((sum, time) => sum + time, 0);
+                if (totalTime > 0) {
+                    document.getElementById('timePhysics').style.height = `${(subjectTime.physics / totalTime) * 100}%`;
+                    document.getElementById('timeChemistry').style.height = `${(subjectTime.chemistry / totalTime) * 100}%`;
+                    document.getElementById('timeBotany').style.height = `${(subjectTime.botany / totalTime) * 100}%`;
+                    document.getElementById('timeZoology').style.height = `${(subjectTime.zoology / totalTime) * 100}%`;
+                }
+            }, 500);
+            
+            // Update score circle
+            const scoreCircle = document.getElementById('scoreCircle');
+            scoreCircle.style.background = `conic-gradient(var(--accent-1) ${totalScore/720*100}%, var(--accent-2) 0%)`;
+            
+            // Show results modal
+            resultsModal.classList.add('active');
+            
+            // Add confetti
+            createConfetti();
+        }
 
-        // Initialize the app when the DOM is loaded
-        document.addEventListener('DOMContentLoaded', initApp);
+        // Create confetti effect
+        function createConfetti() {
+            const confetti = document.getElementById('confetti');
+            confetti.innerHTML = '';
+            
+            const colors = ['#ff6b6b', '#4ecdc4', '#4ade80', '#60a5fa', '#b9a3ff', '#d9b7ff'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.style.position = 'absolute';
+                confettiPiece.style.width = '10px';
+                confettiPiece.style.height = '10px';
+                confettiPiece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confettiPiece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confettiPiece.style.top = '-20px';
+                confettiPiece.style.left = `${Math.random() * 100}%`;
+                confettiPiece.style.opacity = '0';
+                confettiPiece.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                confetti.appendChild(confettiPiece);
+                
+                const animation = confettiPiece.animate([
+                    { top: '-20px', opacity: 0, transform: `rotate(0deg)` },
+                    { top: `${Math.random() * 100}%`, opacity: 1, transform: `rotate(${Math.random() * 360}deg)` },
+                    { top: '100%', opacity: 0, transform: `rotate(${Math.random() * 720}deg)` }
+                ], {
+                    duration: 2000 + Math.random() * 3000,
+                    delay: Math.random() * 1000
+                });
+                
+                animation.onfinish = () => {
+                    confettiPiece.remove();
+                };
+            }
+        }
+
+        // Initialize the app
+        window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
