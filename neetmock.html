@@ -495,6 +495,8 @@
         .results-header {
             text-align: center;
             margin-bottom: 32px;
+            position: relative;
+            z-index: 10;
         }
 
         .score-circle {
@@ -535,6 +537,8 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
             margin-bottom: 32px;
+            position: relative;
+            z-index: 10;
         }
 
         .stat-card {
@@ -578,6 +582,8 @@
 
         .subject-breakdown {
             margin-bottom: 32px;
+            position: relative;
+            z-index: 10;
         }
 
         .breakdown-title {
@@ -639,6 +645,8 @@
             transform: translateY(20px);
             animation: fadeInUp 0.5s ease forwards;
             animation-delay: 0.5s;
+            position: relative;
+            z-index: 10;
         }
 
         .college-prediction {
@@ -647,6 +655,8 @@
             background: var(--card-bg);
             border-radius: 12px;
             border: 1px solid var(--glass-border);
+            position: relative;
+            z-index: 10;
         }
 
         .college-title {
@@ -1172,6 +1182,7 @@
         const userNameInput = document.getElementById('userName');
         const userAgeInput = document.getElementById('userAge');
         const userClassInput = document.getElementById('userClass');
+        const userDOB = document.getElementById('userDOB');
         const userNameDisplay = document.getElementById('userNameDisplay');
         const userDetailsDisplay = document.getElementById('userDetailsDisplay');
         const startNowBtn = document.getElementById('startNowBtn');
@@ -1236,7 +1247,20 @@
             
             userNameInput.addEventListener('input', checkNameSuggestion);
             acceptSuggestion.addEventListener('click', () => {
-                userNameInput.value = suggestionName.textContent;
+                const suggestedName = suggestionName.textContent;
+                userNameInput.value = suggestedName;
+                
+                // Auto-fill details based on the suggested name
+                if (suggestedName === 'Khushi') {
+                    userAgeInput.value = '20';
+                    userClassInput.value = 'Dropper';
+                    userDOB.value = '2005-03-18';
+                } else if (suggestedName === 'Anchal') {
+                    userAgeInput.value = '20';
+                    userClassInput.value = 'Dropper';
+                    userDOB.value = '2005-03-18';
+                }
+                
                 nameSuggestion.style.display = 'none';
             });
             
@@ -1255,12 +1279,12 @@
         const checkNameSuggestion = () => {
             const name = userNameInput.value.trim().toLowerCase();
             if (name.length > 2) {
-                // Simple suggestion logic
-                const suggestions = ['khushi', 'rahul', 'priya', 'amit', 'neha', 'vikas'];
-                const matchedSuggestion = suggestions.find(s => s.startsWith(name));
-                
-                if (matchedSuggestion) {
-                    suggestionName.textContent = matchedSuggestion.charAt(0).toUpperCase() + matchedSuggestion.slice(1);
+                // Special suggestions for Khushi and Anchal
+                if (name === 'khu' || name === 'khus' || name === 'khush' || name === 'khushi') {
+                    suggestionName.textContent = 'Khushi';
+                    nameSuggestion.style.display = 'block';
+                } else if (name === 'anc' || name === 'anch' || name === 'ancha' || name === 'anchal') {
+                    suggestionName.textContent = 'Anchal';
                     nameSuggestion.style.display = 'block';
                 } else {
                     nameSuggestion.style.display = 'none';
@@ -1647,14 +1671,16 @@
         const updateResultsMessage = (score, accuracy) => {
             let message = '';
             
-            if (score >= 600) {
-                message = `Congratulations ${userDetails.name}! You've scored an excellent ${score} marks with ${accuracy}% accuracy. You have a very high chance of getting into top medical colleges. Keep up the great work!`;
+            if (score >= 700) {
+                message = `Congratulations ${userDetails.name}! You've scored an exceptional ${score} marks with ${accuracy}% accuracy. You have an extremely high chance of getting into top medical colleges like AIIMS! 🎉`;
+            } else if (score >= 600) {
+                message = `Outstanding performance ${userDetails.name}! You scored ${score} marks with ${accuracy}% accuracy. You have a very high chance of getting into premium medical colleges. Keep up the great work!`;
             } else if (score >= 500) {
                 message = `Great job ${userDetails.name}! You scored ${score} marks with ${accuracy}% accuracy. With a bit more practice, you can improve your score and get into good medical colleges.`;
             } else if (score >= 400) {
                 message = `Good effort ${userDetails.name}! You scored ${score} marks with ${accuracy}% accuracy. Focus on your weak areas and practice more to improve your score.`;
             } else {
-                message = `You scored ${score} marks with ${accuracy}% accuracy. Don't be discouraged! Identify your weak areas, practice more, and you'll see improvement in your next attempt.`;
+                message = `Nice, WhatsApp par ana 🙂`;
             }
             
             resultsMessage.textContent = message;
@@ -1671,8 +1697,8 @@
             const confettiParticles = [];
             const colors = ['#b9a3ff', '#d9b7ff', '#ffa3a3', '#a3ffb9', '#a3e1ff'];
             
-            // Create confetti particles
-            for (let i = 0; i < 200; i++) {
+            // Create fewer confetti particles for shorter animation
+            for (let i = 0; i < 100; i++) {
                 confettiParticles.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height - canvas.height,
@@ -1685,11 +1711,14 @@
                 });
             }
             
+            let animationTime = 0;
+            const maxAnimationTime = 2000; // 2 seconds instead of continuing until all particles fall
+            
             // Draw confetti
             const drawConfetti = () => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
-                let stillFalling = false;
+                animationTime += 16; // Approximately 60fps
                 
                 confettiParticles.forEach(particle => {
                     ctx.save();
@@ -1703,19 +1732,38 @@
                     
                     particle.y += particle.speed;
                     particle.rotation += particle.rotationSpeed;
-                    
-                    if (particle.y < canvas.height) {
-                        stillFalling = true;
-                    }
                 });
                 
-                if (stillFalling) {
+                if (animationTime < maxAnimationTime) {
                     requestAnimationFrame(drawConfetti);
                 } else {
-                    // Confetti animation finished
-                    setTimeout(() => {
-                        confettiCanvas.classList.add('hidden');
-                    }, 1000);
+                    // Fade out confetti
+                    let opacity = 1;
+                    const fadeOut = () => {
+                        opacity -= 0.05;
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.globalAlpha = opacity;
+                        
+                        confettiParticles.forEach(particle => {
+                            ctx.save();
+                            ctx.translate(particle.x, particle.y);
+                            ctx.rotate(particle.rotation * Math.PI / 180);
+                            
+                            ctx.fillStyle = particle.color;
+                            ctx.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size);
+                            
+                            ctx.restore();
+                        });
+                        
+                        if (opacity > 0) {
+                            requestAnimationFrame(fadeOut);
+                        } else {
+                            confettiCanvas.classList.add('hidden');
+                            ctx.globalAlpha = 1;
+                        }
+                    };
+                    
+                    fadeOut();
                 }
             };
             
