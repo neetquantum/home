@@ -1385,35 +1385,26 @@
                 zoology: 'Zoology'
             };
             
-           // --- REPLACE generateQuestions() with this ---
-async function generateQuestions() {
-  try {
-    // Make sure filename matches your uploaded JSON
-    const res = await fetch("neet_180_questions_formatted.json");
-    if (!res.ok) throw new Error('Fetch failed: ' + res.status);
-    const data = await res.json();
-
-    if (!data.questions || !Array.isArray(data.questions)) {
-      throw new Error('Invalid JSON: questions[] missing');
-    }
-
-    // Use questions from JSON
-    questions = data.questions;
-
-    // Ensure answer arrays match questions length
-    userAnswers = Array(questions.length).fill(null);
-    skippedQuestions = Array(questions.length).fill(true);
-
-    // Build UI pieces now that questions exist
-    renderQuestionGrid();
-    updateQuestionNavigation();
-    updateProgress();
-
-  } catch (err) {
-    console.error(err);
-    alert('Error loading questions — open DevTools console for details.');
-  }
-}
+            // Generate 45 questions for each subject
+            for (let i = 0; i < 4; i++) {
+                const subject = subjects[i];
+                for (let j = 0; j < 45; j++) {
+                    questions.push({
+                        id: (i * 45) + j + 1,
+                        subject: subject,
+                        subjectName: subjectNames[subject],
+                        question: `This is a sample question for ${subjectNames[subject]} (Q${j+1}). Which of the following options is correct?`,
+                        options: [
+                            'Option A',
+                            'Option B',
+                            'Option C',
+                            'Option D'
+                        ],
+                        correctAnswer: Math.floor(Math.random() * 4)
+                    });
+                }
+            }
+        }
 
         // Render question grid
         function renderQuestionGrid() {
@@ -1474,34 +1465,32 @@ async function generateQuestions() {
             skippedCountDisplay.textContent = skipped;
         }
 
-        // Render current question (updated for JSON fields EN/HI)
-function renderQuestion() {
-  const question = questions[currentQuestionIndex];
-
-  // Question text (use Hindi if toggled and available, otherwise English)
-  questionText.textContent = isHindi ? (question.question_hi || question.question_en) : question.question_en;
-
-  // Options (use Hindi options if available else English; fallback to old 'options' if needed)
-  optionsContainer.innerHTML = '';
-  const opts = isHindi
-    ? (Array.isArray(question.options_hi) && question.options_hi.length ? question.options_hi : question.options_en)
-    : question.options_en;
-
-  // Safety fallback if opts undefined
-  const safeOpts = Array.isArray(opts) && opts.length ? opts : (question.options || ["Option A","Option B","Option C","Option D"]);
-
-  safeOpts.forEach((option, index) => {
-    const optionElement = document.createElement('div');
-    optionElement.className = 'option';
-    if (userAnswers[currentQuestionIndex] === index) optionElement.classList.add('selected');
-    optionElement.textContent = option || ('Option ' + String.fromCharCode(65 + index));
-    optionElement.addEventListener('click', () => selectOption(index));
-    optionsContainer.appendChild(optionElement);
-  });
-
-  updateQuestionNavigation();
-}
-
+        // Render current question
+        function renderQuestion() {
+            const question = questions[currentQuestionIndex];
+            
+            // Update question text
+            questionText.textContent = isHindi ? 
+                `यह ${question.subjectName} का एक सैंपल प्रश्न है। निम्नलिखित में से कौन सा विकल्प सही है?` : 
+                question.question;
+            
+            // Update options
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                if (userAnswers[currentQuestionIndex] === index) {
+                    optionElement.classList.add('selected');
+                }
+                optionElement.textContent = isHindi ? 
+                    ['विकल्प क', 'विकल्प ख', 'विकल्प ग', 'विकल्प घ'][index] : 
+                    option;
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            updateQuestionNavigation();
+        }
 
         // Select option
         function selectOption(index) {
@@ -1725,59 +1714,54 @@ function renderQuestion() {
             showResults();
         }
 
-        // Show results (UPDATED)
-function showResults() {
-    // Calculate scores
-    let correct = 0;
-    let incorrect = 0;
-    let skipped = 0;
-    
-    const subjectScores = {
-        physics: { correct: 0, total: 0 },
-        chemistry: { correct: 0, total: 0 },
-        botany: { correct: 0, total: 0 },
-        zoology: { correct: 0, total: 0 }
-    };
-    
-    userAnswers.forEach((answer, index) => {
-        const question = questions[index];
-        subjectScores[question.subject].total++;
-        
-        // yahan ab JSON ke correctIndex ko check karega
-        const correctIdx = (question.correctIndex !== undefined) ? question.correctIndex : question.correctAnswer;
-        
-        if (answer === null) {
-            skipped++;
-        } else if (answer === correctIdx) {
-            correct++;
-            subjectScores[question.subject].correct++;
-        } else {
-            incorrect++;
-        }
-    });
-    
-    const totalScore = correct * 4;
-    const accuracy = correct + incorrect > 0 ? (correct / (correct + incorrect)) * 100 : 0;
-    
-    // Update result elements
-    document.getElementById('scoreValue').textContent = totalScore;
-    document.getElementById('correctCount').textContent = correct;
-    document.getElementById('incorrectCount').textContent = incorrect;
-    document.getElementById('skippedCount').textContent = skipped;
-    document.getElementById('accuracyValue').textContent = `${accuracy.toFixed(1)}%`;
-    
-    // Update subject scores
-    const updateSubjectScore = (subjectId, correct, total) => {
-        const percentage = total > 0 ? (correct / total) * 100 : 0;
-        document.getElementById(subjectId).style.width = `${percentage}%`;
-    };
-    
-    updateSubjectScore('physicsScore', subjectScores.physics.correct, subjectScores.physics.total);
-    updateSubjectScore('chemistryScore', subjectScores.chemistry.correct, subjectScores.chemistry.total);
-    updateSubjectScore('botanyScore', subjectScores.botany.correct, subjectScores.botany.total);
-    updateSubjectScore('zoologyScore', subjectScores.zoology.correct, subjectScores.zoology.total);
-}
-
+        // Show results
+        function showResults() {
+            // Calculate scores
+            let correct = 0;
+            let incorrect = 0;
+            let skipped = 0;
+            
+            const subjectScores = {
+                physics: { correct: 0, total: 0 },
+                chemistry: { correct: 0, total: 0 },
+                botany: { correct: 0, total: 0 },
+                zoology: { correct: 0, total: 0 }
+            };
+            
+            userAnswers.forEach((answer, index) => {
+                const question = questions[index];
+                subjectScores[question.subject].total++;
+                
+                if (answer === null) {
+                    skipped++;
+                } else if (answer === question.correctAnswer) {
+                    correct++;
+                    subjectScores[question.subject].correct++;
+                } else {
+                    incorrect++;
+                }
+            });
+            
+            const totalScore = correct * 4;
+            const accuracy = correct / (correct + incorrect) * 100 || 0;
+            
+            // Update result elements
+            document.getElementById('scoreValue').textContent = totalScore;
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('incorrectCount').textContent = incorrect;
+            document.getElementById('skippedCount').textContent = skipped;
+            document.getElementById('accuracyValue').textContent = `${accuracy.toFixed(1)}%`;
+            
+            // Update subject scores
+            const updateSubjectScore = (subjectId, correct, total) => {
+                const percentage = (correct / total) * 100 || 0;
+                document.getElementById(subjectId).style.width = `${percentage}%`;
+            };
+            
+            updateSubjectScore('physicsScore', subjectScores.physics.correct, subjectScores.physics.total);
+            updateSubjectScore('chemistryScore', subjectScores.chemistry.correct, subjectScores.chemistry.total);
+            updateSubjectScore('botanyScore', subjectScores.botany.correct, subjectScores.botany.total);
+            updateSubjectScore('zoologyScore', subjectScores.zoology.correct, subjectScores.zoology.total);
             
             // Update charts with animation
             setTimeout(() => {
