@@ -20,10 +20,6 @@
             --incorrect: #f87171;
             --skipped: #9ca3af;
             --answered: #4ade80;
-            --physics: #ff6b6b;
-            --chemistry: #4ecdc4;
-            --botany: #4ade80;
-            --zoology: #60a5fa;
         }
 
         * {
@@ -364,23 +360,6 @@
 
         .grid-btn.current {
             box-shadow: 0 0 0 2px var(--accent-1);
-        }
-
-        /* Subject highlighting */
-        .grid-btn.physics {
-            border-left: 3px solid var(--physics);
-        }
-
-        .grid-btn.chemistry {
-            border-left: 3px solid var(--chemistry);
-        }
-
-        .grid-btn.botany {
-            border-left: 3px solid var(--botany);
-        }
-
-        .grid-btn.zoology {
-            border-left: 3px solid var(--zoology);
         }
 
         /* Modal Styles */
@@ -1289,7 +1268,7 @@
                     </div>
                     <div class="college-card">
                         <div class="college-name">Safdarjung</div>
-                        <div class="college-score">Cutoff: 630</div>
+                        <div class='college-score'>Cutoff: 630</div>
                     </div>
                 </div>
             </div>
@@ -1354,6 +1333,7 @@
         };
         let subjectStartTime;
         let currentSubjectType = '';
+        let currentFilter = 'all';
 
         // Initialize the app
         function init() {
@@ -1372,7 +1352,10 @@
             enBtn.addEventListener('click', () => switchLanguage(false));
             hiBtn.addEventListener('click', () => switchLanguage(true));
             subjectButtons.forEach(btn => {
-                btn.addEventListener('click', () => filterQuestions(btn.dataset.subject));
+                btn.addEventListener('click', (e) => {
+                    currentFilter = e.target.dataset.subject;
+                    filterQuestions(currentFilter);
+                });
             });
             
             // Name autofill suggestion
@@ -1402,21 +1385,24 @@
                 zoology: 'Zoology'
             };
             
-            for (let i = 0; i < 180; i++) {
-                const subject = subjects[i % 4];
-                questions.push({
-                    id: i + 1,
-                    subject: subject,
-                    subjectName: subjectNames[subject],
-                    question: `This is a sample question for ${subjectNames[subject]}. Which of the following options is correct?`,
-                    options: [
-                        'Option A',
-                        'Option B',
-                        'Option C',
-                        'Option D'
-                    ],
-                    correctAnswer: Math.floor(Math.random() * 4)
-                });
+            // Generate 45 questions for each subject
+            for (let i = 0; i < 4; i++) {
+                const subject = subjects[i];
+                for (let j = 0; j < 45; j++) {
+                    questions.push({
+                        id: (i * 45) + j + 1,
+                        subject: subject,
+                        subjectName: subjectNames[subject],
+                        question: `This is a sample question for ${subjectNames[subject]} (Q${j+1}). Which of the following options is correct?`,
+                        options: [
+                            'Option A',
+                            'Option B',
+                            'Option C',
+                            'Option D'
+                        ],
+                        correctAnswer: Math.floor(Math.random() * 4)
+                    });
+                }
             }
         }
 
@@ -1425,7 +1411,7 @@
             questionGrid.innerHTML = '';
             questions.forEach((question, index) => {
                 const button = document.createElement('button');
-                button.className = `grid-btn ${question.subject}`;
+                button.className = 'grid-btn';
                 button.textContent = index + 1;
                 button.addEventListener('click', () => goToQuestion(index));
                 questionGrid.appendChild(button);
@@ -1812,7 +1798,7 @@
             
             const colors = ['#ff6b6b', '#4ecdc4', '#4ade80', '#60a5fa', '#b9a3ff', '#d9b7ff'];
             
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 50; i++) {
                 const confettiPiece = document.createElement('div');
                 confettiPiece.style.position = 'absolute';
                 confettiPiece.style.width = '10px';
@@ -1831,8 +1817,8 @@
                     { top: `${Math.random() * 100}%`, opacity: 1, transform: `rotate(${Math.random() * 360}deg)` },
                     { top: '100%', opacity: 0, transform: `rotate(${Math.random() * 720}deg)` }
                 ], {
-                    duration: 2000 + Math.random() * 3000,
-                    delay: Math.random() * 1000
+                    duration: 2000 + Math.random() * 2000,
+                    delay: Math.random() * 500
                 });
                 
                 animation.onfinish = () => {
