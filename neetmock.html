@@ -1375,36 +1375,32 @@
             });
         }
 
-        // Generate sample questions
-        function generateQuestions() {
-            const subjects = ['physics', 'chemistry', 'botany', 'zoology'];
-            const subjectNames = {
-                physics: 'Physics',
-                chemistry: 'Chemistry',
-                botany: 'Botany',
-                zoology: 'Zoology'
-            };
-            
-            // Generate 45 questions for each subject
-            for (let i = 0; i < 4; i++) {
-                const subject = subjects[i];
-                for (let j = 0; j < 45; j++) {
-                    questions.push({
-                        id: (i * 45) + j + 1,
-                        subject: subject,
-                        subjectName: subjectNames[subject],
-                        question: `This is a sample question for ${subjectNames[subject]} (Q${j+1}). Which of the following options is correct?`,
-                        options: [
-                            'Option A',
-                            'Option B',
-                            'Option C',
-                            'Option D'
-                        ],
-                        correctAnswer: Math.floor(Math.random() * 4)
-                    });
-                }
-            }
-        }
+        // Generate real questions manually
+function generateQuestions() {
+  const allQuestions = [
+    // ================= Physics (id 1 to 45) =================
+    {
+      id: 1,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Units & Measurement",
+      question_en: "What is the SI unit of force?",
+      question_hi: "बल की SI इकाई क्या है?",
+      options_en: ["Newton","Joule","Watt","Pascal"],
+      options_hi: ["न्यूटन","जूल","वाट","पास्कल"],
+      correctIndex: 0
+    },
+    {
+      id: 2,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Motion",
+      question_en: "A particle moves with constant velocity. What is its acceleration?",
+      question_hi: "यदि कोई कण समान वेग से चलता है तो उसका त्वरण क्या होगा?",
+      options_en: ["Zero","Constant non-zero","Increasing","Decreasing"],
+      options_hi: ["शून्य","समान गैर-शून्य","बढ़ता हुआ","घटता हुआ"],
+      correctIndex: 0
+    },
 
         // Render question grid
         function renderQuestionGrid() {
