@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* All existing CSS remains unchanged */
         :root {
             --bg-1: #05060b;
             --bg-2: #0b1220;
@@ -242,6 +243,7 @@
             display: flex;
             justify-content: space-between;
             margin-top: 24px;
+            gap: 16px;
         }
 
         .nav-btn {
@@ -253,6 +255,7 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
+            flex: 1;
         }
 
         .nav-btn:disabled {
@@ -772,6 +775,8 @@
         /* Confirmation Modal */
         .confirmation-modal {
             text-align: center;
+            position: relative;
+            z-index: 1010;
         }
 
         .confirmation-text {
@@ -1000,6 +1005,35 @@
         .hidden {
             display: none;
         }
+
+        /* Autofill highlight animation */
+        .highlight {
+            animation: highlightField 1.5s ease;
+        }
+
+        @keyframes highlightField {
+            0% { background-color: rgba(185, 163, 255, 0.1); }
+            50% { background-color: rgba(185, 163, 255, 0.3); }
+            100% { background-color: rgba(255, 255, 255, 0.03); }
+        }
+
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--accent-1);
+            white-space: nowrap;
+            animation: typing 0.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-1); }
+        }
     </style>
 </head>
 <body>
@@ -1017,7 +1051,7 @@
                 
                 <div class="user-info">
                     <div class="user-name" id="userNameDisplay">Student</div>
-                    <div class="user-details" id="userDetailsDisplay">PCMB</div>
+                    <div class="userDetailsDisplay" id="userDetailsDisplay">PCMB</div>
                 </div>
                 
                 <div class="controls">
@@ -1046,7 +1080,7 @@
                         <div class="question-number">Question <span id="currentQuestion">1</span> of 180 <span id="currentSubject" class="current-subject"></span></div>
                         <div class="question-text" id="questionText">Loading question...</div>
                         
-                        <div class="options-container" id="optionsContainer">
+                        <div class="optionsContainer" id="optionsContainer">
                             <!-- Options will be inserted here -->
                         </div>
                     </div>
@@ -1122,21 +1156,18 @@
     <div id="countdownOverlay" class="countdown-overlay">
         <div class="countdown-container">
             <div class="countdown-number" id="countdownNumber">3</div>
-            <div class="countdown-text">Test Starting In</div>
+            <div class="countdown-text">Get Ready</div>
         </div>
     </div>
 
     <!-- Confirmation Modal -->
     <div id="confirmationModal" class="modal-overlay">
         <div class="modal confirmation-modal">
-            <h2 class="modal-title">Confirm Finish</h2>
-            <div class="confirmation-text">
-                Are you sure you want to finish your test?<br>
-                Once finished, you cannot return to the test.
-            </div>
+            <h2 class="modal-title">Finish Test?</h2>
+            <p class="confirmation-text">Are you sure you want to finish the test? You still have <span id="remainingQuestions">0</span> questions to answer.</p>
             <div class="confirmation-buttons">
-                <button id="confirmFinish" class="confirm-btn confirm-yes">Yes, Finish Test</button>
-                <button id="cancelFinish" class="confirm-btn confirm-no">No, Continue Test</button>
+                <button id="confirmFinish" class="confirm-btn confirm-yes">Yes, Finish</button>
+                <button id="cancelFinish" class="confirm-btn confirm-no">No, Continue</button>
             </div>
         </div>
     </div>
@@ -1145,27 +1176,27 @@
     <div id="resultsModal" class="modal-overlay">
         <div class="modal results-modal">
             <div class="results-header">
-                <div class="score-circle" id="scoreCircle">
+                <div class="score-circle">
                     <div class="score-inner">
                         <div class="score-value" id="scoreValue">0</div>
-                        <div class="score-total">/720</div>
+                        <div class="score-total">/ 720</div>
                     </div>
                 </div>
-                <h2>Test Results</h2>
+                <h2 class="modal-title">Test Results</h2>
             </div>
             
             <div class="results-stats">
                 <div class="stat-card correct">
-                    <div class="stat-value" id="correctCount">0</div>
-                    <div class="stat-label">Correct Answers</div>
+                    <div class="stat-value" id="correctAnswers">0</div>
+                    <div class="stat-label">Correct</div>
                 </div>
                 <div class="stat-card incorrect">
-                    <div class="stat-value" id="incorrectCount">0</div>
-                    <div class="stat-label">Incorrect Answers</div>
+                    <div class="stat-value" id="incorrectAnswers">0</div>
+                    <div class="stat-label">Incorrect</div>
                 </div>
                 <div class="stat-card skipped">
-                    <div class="stat-value" id="skippedCount">0</div>
-                    <div class="stat-label">Skipped Questions</div>
+                    <div class="stat-value" id="skippedAnswers">0</div>
+                    <div class="stat-label">Skipped</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="accuracyValue">0%</div>
@@ -1208,44 +1239,14 @@
                 <div class="charts-container">
                     <div class="chart">
                         <div class="chart-title">Subject-wise Score</div>
-                        <div class="chart-bars">
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" id="physicsChart" style="height: 0%"></div>
-                                <div class="chart-label">Physics</div>
-                            </div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" id="chemistryChart" style="height: 0%"></div>
-                                <div class="chart-label">Chemistry</div>
-                            </div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" id="botanyChart" style="height: 0%"></div>
-                                <div class="chart-label">Botany</div>
-                            </div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" id="zoologyChart" style="height: 0%"></div>
-                                <div class="chart-label">Zoology</div>
-                            </div>
+                        <div class="chart-bars" id="subjectChart">
+                            <!-- Chart bars will be inserted here -->
                         </div>
                     </div>
                     <div class="chart">
-                        <div class="chart-title">Time Distribution</div>
-                        <div class="chart-bars">
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" id="timePhysics" style="height: 0%"></div>
-                                <div class="chart-label">Physics</div>
-                            </div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" id="timeChemistry" style="height: 0%"></div>
-                                <div class="chart-label">Chemistry</div>
-                            </div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" id="timeBotany" style="height: 0%"></div>
-                                <div class="chart-label">Botany</div>
-                            </div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" id="timeZoology" style="height: 0%"></div>
-                                <div class="chart-label">Zoology</div>
-                            </div>
+                        <div class="chart-title">Question Analysis</div>
+                        <div class="chart-bars" id="analysisChart">
+                            <!-- Chart bars will be inserted here -->
                         </div>
                     </div>
                 </div>
@@ -1256,19 +1257,19 @@
                 <div class="college-cards">
                     <div class="college-card">
                         <div class="college-name">AIIMS Delhi</div>
-                        <div class="college-score">Cutoff: 680</div>
+                        <div class="college-score">Cutoff: 650+</div>
                     </div>
                     <div class="college-card">
                         <div class="college-name">Maulana Azad</div>
-                        <div class="college-score">Cutoff: 650</div>
+                        <div class="college-score">Cutoff: 600+</div>
                     </div>
                     <div class="college-card">
                         <div class="college-name">King George's</div>
-                        <div class="college-score">Cutoff: 640</div>
+                        <div class="college-score">Cutoff: 580+</div>
                     </div>
                     <div class="college-card">
-                        <div class="college-name">Safdarjung</div>
-                        <div class='college-score'>Cutoff: 630</div>
+                        <div class="college-name">JIPMER</div>
+                        <div class="college-score">Cutoff: 550+</div>
                     </div>
                 </div>
             </div>
@@ -1279,9 +1280,17 @@
         </div>
     </div>
 
-    <div id="confetti" class="confetti"></div>
-
     <script>
+        // Global variables
+        let questions = [];
+        let userAnswers = Array(180).fill(null);
+        let currentQuestionIndex = 0;
+        let timerInterval;
+        let timeRemaining = 3 * 60 * 60; // 3 hours in seconds
+        let language = 'en';
+        let skippedQuestions = [];
+        let currentSubjectFilter = 'all';
+
         // DOM Elements
         const testScreen = document.getElementById('testScreen');
         const userModal = document.getElementById('userModal');
@@ -1293,47 +1302,35 @@
         const userClass = document.getElementById('userClass');
         const userDOB = document.getElementById('userDOB');
         const startNowBtn = document.getElementById('startNowBtn');
-        const finishTestBtn = document.getElementById('finishTestBtn');
-        const confirmFinish = document.getElementById('confirmFinish');
-        const cancelFinish = document.getElementById('cancelFinish');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
+        const currentQuestionElement = document.getElementById('currentQuestion');
         const questionText = document.getElementById('questionText');
         const optionsContainer = document.getElementById('optionsContainer');
         const questionGrid = document.getElementById('questionGrid');
-        const currentQuestion = document.getElementById('currentQuestion');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const finishTestBtn = document.getElementById('finishTestBtn');
         const timer = document.getElementById('timer');
         const attemptedCount = document.getElementById('attemptedCount');
         const skippedCountDisplay = document.getElementById('skippedCountDisplay');
+        const userNameDisplay = document.getElementById('userNameDisplay');
+        const userDetailsDisplay = document.getElementById('userDetailsDisplay');
+        const currentSubject = document.getElementById('currentSubject');
         const enBtn = document.getElementById('enBtn');
         const hiBtn = document.getElementById('hiBtn');
         const subjectButtons = document.querySelectorAll('.subject-btn');
-        const userNameDisplay = document.getElementById('userNameDisplay');
-        const userDetailsDisplay = document.getElementById('userDetailsDisplay');
+        const countdownNumber = document.getElementById('countdownNumber');
+        const confirmFinish = document.getElementById('confirmFinish');
+        const cancelFinish = document.getElementById('cancelFinish');
+        const remainingQuestions = document.getElementById('remainingQuestions');
+        const scoreValue = document.getElementById('scoreValue');
+        const correctAnswers = document.getElementById('correctAnswers');
+        const incorrectAnswers = document.getElementById('incorrectAnswers');
+        const skippedAnswers = document.getElementById('skippedAnswers');
+        const accuracyValue = document.getElementById('accuracyValue');
         const nameSuggestion = document.getElementById('nameSuggestion');
         const suggestionName = document.getElementById('suggestionName');
         const acceptSuggestion = document.getElementById('acceptSuggestion');
         const rejectSuggestion = document.getElementById('rejectSuggestion');
-        const currentSubject = document.getElementById('currentSubject');
-        
-        // Test state
-        let questions = [];
-        let currentQuestionIndex = 0;
-        let userAnswers = Array(180).fill(null);
-        let skippedQuestions = Array(180).fill(true);
-        let testStartTime;
-        let testDuration = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
-        let timerInterval;
-        let isHindi = false;
-        let subjectTime = {
-            physics: 0,
-            chemistry: 0,
-            botany: 0,
-            zoology: 0
-        };
-        let subjectStartTime;
-        let currentSubjectType = '';
-        let currentFilter = 'all';
 
         // Initialize the app
         function init() {
@@ -1341,223 +1338,550 @@
             renderQuestionGrid();
             updateQuestionNavigation();
             updateProgress();
-            
-            // Event listeners
-            startNowBtn.addEventListener('click', startTest);
-            finishTestBtn.addEventListener('click', showConfirmation);
-            confirmFinish.addEventListener('click', finishTest);
-            cancelFinish.addEventListener('click', hideConfirmation);
-            prevBtn.addEventListener('click', goToPreviousQuestion);
-            nextBtn.addEventListener('click', goToNextQuestion);
-            enBtn.addEventListener('click', () => switchLanguage(false));
-            hiBtn.addEventListener('click', () => switchLanguage(true));
-            subjectButtons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    currentFilter = e.target.dataset.subject;
-                    filterQuestions(currentFilter);
-                });
-            });
-            
-            // Name autofill suggestion
-            userName.addEventListener('input', checkNameSuggestion);
-            acceptSuggestion.addEventListener('click', acceptNameSuggestion);
-            rejectSuggestion.addEventListener('click', rejectNameSuggestion);
-            
-            // Auto-fill animation for inputs
-            const autoFillInputs = document.querySelectorAll('.auto-fill');
-            autoFillInputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    this.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
-                    setTimeout(() => {
-                        this.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
-                    }, 800);
-                });
-            });
+            setupEventListeners();
         }
 
-        // Generate real questions manually
-function generateQuestions() {
-  const allQuestions = [
-    // ================= Physics (id 1 to 45) =================
-    {
-      id: 1,
-      subject: "physics",
-      subjectName: "Physics",
-      chapter: "Units & Measurement",
-      question_en: "What is the SI unit of force?",
-      question_hi: "बल की SI इकाई क्या है?",
-      options_en: ["Newton","Joule","Watt","Pascal"],
-      options_hi: ["न्यूटन","जूल","वाट","पास्कल"],
-      correctIndex: 0
-    },
-    {
-      id: 2,
-      subject: "physics",
-      subjectName: "Physics",
-      chapter: "Motion",
-      question_en: "A particle moves with constant velocity. What is its acceleration?",
-      question_hi: "यदि कोई कण समान वेग से चलता है तो उसका त्वरण क्या होगा?",
-      options_en: ["Zero","Constant non-zero","Increasing","Decreasing"],
-      options_hi: ["शून्य","समान गैर-शून्य","बढ़ता हुआ","घटता हुआ"],
-      correctIndex: 0
-    },
+        // Generate questions array with 180 items (45 per subject)
+        async function generateQuestions() {
+            try {
+                // Try to fetch the JSON file
+                let jsonData;
+                if (typeof uploadedJSON !== 'undefined') {
+                    // Use the global variable if available
+                    jsonData = uploadedJSON;
+                } else {
+                    // Otherwise fetch from the file
+                    const response = await fetch('neet_180_questions_formatted.json');
+                    if (!response.ok) throw new Error('Failed to fetch JSON');
+                    jsonData = await response.json();
+                }
+
+                const subjects = [
+                    { name: 'physics', displayName: 'Physics', start: 0, end: 44 },
+                    { name: 'chemistry', displayName: 'Chemistry', start: 45, end: 89 },
+                    { name: 'botany', displayName: 'Botany', start: 90, end: 134 },
+                    { name: 'zoology', displayName: 'Zoology', start: 135, end: 179 }
+                ];
+
+                // Create placeholder questions for all 180 slots
+                questions = Array(180).fill(null).map((_, index) => {
+                    let subject = '';
+                    let subjectName = '';
+                    
+                    if (index <= 44) {
+                        subject = 'physics';
+                        subjectName = 'Physics';
+                    } else if (index <= 89) {
+                        subject = 'chemistry';
+                        subjectName = 'Chemistry';
+                    } else if (index <= 134) {
+                        subject = 'botany';
+                        subjectName = 'Botany';
+                    } else {
+                        subject = 'zoology';
+                        subjectName = 'Zoology';
+                    }
+                    
+                    return {
+                        id: index + 1,
+                        subject: subject,
+                        subjectName: subjectName,
+                        question_en: 'Placeholder question — to be filled later',
+                        question_hi: 'प्लेसहोल्डर प्रश्न - बाद में भरा जाएगा',
+                        options_en: ['Option A', 'Option B', 'Option C', 'Option D'],
+                        options_hi: ['विकल्प A', 'विकल्प B', 'विकल्प C', 'विकल्प D'],
+                        correctAnswer: 0
+                    };
+                });
+
+                // Replace first 3 questions for each subject with real questions from JSON
+                subjects.forEach(subject => {
+                    const subjectQuestions = jsonData.questions.filter(q => 
+                        q.subject.toLowerCase() === subject.name.toLowerCase()
+                    ).slice(0, 3);
+                    
+                    subjectQuestions.forEach((q, i) => {
+                        const targetIndex = subject.start + i;
+                        questions[targetIndex] = {
+                            id: targetIndex + 1,
+                            subject: subject.name,
+                            subjectName: subject.displayName,
+                            question_en: q.question_en || q.question,
+                            question_hi: q.question_hi || q.question,
+                            options_en: q.options_en || q.options,
+                            options_hi: q.options_hi || q.options,
+                            correctAnswer: q.correctAnswer
+                        };
+                    });
+                });
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                // Fallback: create placeholder questions if JSON loading fails
+                questions = Array(180).fill(null).map((_, index) => {
+                    let subject = '';
+                    let subjectName = '';
+                    
+                    if (index <= 44) {
+                        subject = 'physics';
+                        subjectName = 'Physics';
+                    } else if (index <= 89) {
+                        subject = 'chemistry';
+                        subjectName = 'Chemistry';
+                    } else if (index <= 134) {
+                        subject = 'botany';
+                        subjectName = 'Botany';
+                    } else {
+                        subject = 'zoology';
+                        subjectName = 'Zoology';
+                    }
+                    
+                    return {
+                        id: index + 1,
+                        subject: subject,
+                        subjectName: subjectName,
+                        question_en: 'Placeholder question — to be filled later',
+                        question_hi: 'प्लेसहोल्डर प्रश्न - बाद में भरा जाएगा',
+                        options_en: ['Option A', 'Option B', 'Option C', 'Option D'],
+                        options_hi: ['विकल्प A', 'विकल्प B', 'विकल्प C', 'विकल्प D'],
+                        correctAnswer: 0
+                    };
+                });
+            }
+        }
 
         // Render question grid
         function renderQuestionGrid() {
             questionGrid.innerHTML = '';
-            questions.forEach((question, index) => {
-                const button = document.createElement('button');
-                button.className = 'grid-btn';
-                button.textContent = index + 1;
-                button.addEventListener('click', () => goToQuestion(index));
-                questionGrid.appendChild(button);
-            });
-        }
-
-        // Update question navigation
-        function updateQuestionNavigation() {
-            // Update grid buttons
-            const gridButtons = document.querySelectorAll('.grid-btn');
-            gridButtons.forEach((button, index) => {
-                button.classList.remove('answered', 'skipped', 'current');
+            
+            for (let i = 0; i < 180; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'grid-btn';
+                btn.textContent = i + 1;
+                btn.dataset.index = i;
                 
-                if (userAnswers[index] !== null) {
-                    button.classList.add('answered');
-                } else if (skippedQuestions[index]) {
-                    button.classList.add('skipped');
+                if (userAnswers[i] !== null) {
+                    btn.classList.add('answered');
                 }
                 
-                if (index === currentQuestionIndex) {
-                    button.classList.add('current');
+                if (i === currentQuestionIndex) {
+                    btn.classList.add('current');
                 }
-            });
-            
-            // Update prev/next buttons
-            prevBtn.disabled = currentQuestionIndex === 0;
-            nextBtn.disabled = currentQuestionIndex === questions.length - 1;
-            
-            // Update current question number
-            currentQuestion.textContent = currentQuestionIndex + 1;
-            
-            // Update current subject indicator
-            const currentQ = questions[currentQuestionIndex];
-            currentSubject.textContent = currentQ.subjectName;
-            currentSubjectType = currentQ.subject;
-            
-            // Start tracking time for this subject
-            if (subjectStartTime) {
-                const timeSpent = Date.now() - subjectStartTime;
-                subjectTime[currentSubjectType] += timeSpent;
+                
+                btn.addEventListener('click', () => {
+                    currentQuestionIndex = i;
+                    renderQuestion();
+                    updateQuestionNavigation();
+                });
+                
+                questionGrid.appendChild(btn);
             }
-            subjectStartTime = Date.now();
-        }
-
-        // Update progress
-        function updateProgress() {
-            const attempted = userAnswers.filter(answer => answer !== null).length;
-            const skipped = skippedQuestions.filter(skipped => skipped).length;
-            
-            attemptedCount.textContent = attempted;
-            skippedCountDisplay.textContent = skipped;
         }
 
         // Render current question
         function renderQuestion() {
             const question = questions[currentQuestionIndex];
+            currentQuestionElement.textContent = currentQuestionIndex + 1;
             
-            // Update question text
-            questionText.textContent = isHindi ? 
-                `यह ${question.subjectName} का एक सैंपल प्रश्न है। निम्नलिखित में से कौन सा विकल्प सही है?` : 
-                question.question;
+            // Update current subject indicator
+            currentSubject.textContent = question.subjectName;
             
-            // Update options
+            // Set question text based on language
+            questionText.textContent = language === 'en' ? question.question_en : question.question_hi;
+            
+            // Clear options container
             optionsContainer.innerHTML = '';
-            question.options.forEach((option, index) => {
+            
+            // Add options based on language
+            const options = language === 'en' ? question.options_en : question.options_hi;
+            
+            options.forEach((option, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.className = 'option';
+                
                 if (userAnswers[currentQuestionIndex] === index) {
                     optionElement.classList.add('selected');
                 }
-                optionElement.textContent = isHindi ? 
-                    ['विकल्प क', 'विकल्प ख', 'विकल्प ग', 'विकल्प घ'][index] : 
-                    option;
-                optionElement.addEventListener('click', () => selectOption(index));
+                
+                optionElement.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+                
+                optionElement.addEventListener('click', () => {
+                    selectOption(index);
+                });
+                
                 optionsContainer.appendChild(optionElement);
             });
             
-            updateQuestionNavigation();
+            // Update navigation buttons
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            // Update grid buttons
+            const gridButtons = questionGrid.querySelectorAll('.grid-btn');
+            gridButtons.forEach((btn, i) => {
+                btn.classList.remove('current');
+                if (i === currentQuestionIndex) {
+                    btn.classList.add('current');
+                }
+                
+                if (userAnswers[i] !== null) {
+                    btn.classList.add('answered');
+                } else {
+                    btn.classList.remove('answered');
+                }
+            });
+            
+            // Apply subject filter
+            applySubjectFilter();
         }
 
         // Select option
         function selectOption(index) {
             userAnswers[currentQuestionIndex] = index;
-            skippedQuestions[currentQuestionIndex] = false;
-            renderQuestion();
+            
+            const options = optionsContainer.querySelectorAll('.option');
+            options.forEach(option => option.classList.remove('selected'));
+            options[index].classList.add('selected');
+            
             updateProgress();
         }
 
-        // Go to specific question
-        function goToQuestion(index) {
-            // Update time spent on current subject
-            if (subjectStartTime) {
-                const timeSpent = Date.now() - subjectStartTime;
-                subjectTime[currentSubjectType] += timeSpent;
-            }
-            
-            currentQuestionIndex = index;
-            renderQuestion();
-            
-            // Update subject start time
-            subjectStartTime = Date.now();
-            currentSubjectType = questions[currentQuestionIndex].subject;
-        }
-
-        // Go to previous question
-        function goToPreviousQuestion() {
-            if (currentQuestionIndex > 0) {
-                goToQuestion(currentQuestionIndex - 1);
-            }
-        }
-
-        // Go to next question
-        function goToNextQuestion() {
-            if (currentQuestionIndex < questions.length - 1) {
-                goToQuestion(currentQuestionIndex + 1);
-            }
-        }
-
-        // Switch language
-        function switchLanguage(hindi) {
-            isHindi = hindi;
-            enBtn.classList.toggle('active', !hindi);
-            hiBtn.classList.toggle('active', hindi);
-            renderQuestion();
-        }
-
-        // Filter questions by subject
-        function filterQuestions(subject) {
-            subjectButtons.forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`[data-subject="${subject}"]`).classList.add('active');
-            
-            if (subject === 'all') {
-                const gridButtons = document.querySelectorAll('.grid-btn');
-                gridButtons.forEach(btn => btn.style.display = 'flex');
-                return;
-            }
-            
-            const gridButtons = document.querySelectorAll('.grid-btn');
-            gridButtons.forEach((btn, index) => {
-                btn.style.display = questions[index].subject === subject ? 'flex' : 'none';
+        // Update question navigation
+        function updateQuestionNavigation() {
+            const gridButtons = questionGrid.querySelectorAll('.grid-btn');
+            gridButtons.forEach((btn, i) => {
+                btn.classList.remove('current');
+                if (i === currentQuestionIndex) {
+                    btn.classList.add('current');
+                }
             });
         }
 
-        // Check name suggestion
-        function checkNameSuggestion() {
+        // Update progress
+        function updateProgress() {
+            const attempted = userAnswers.filter(answer => answer !== null).length;
+            const skipped = userAnswers.filter(answer => answer === null).length;
+            
+            attemptedCount.textContent = attempted;
+            skippedCountDisplay.textContent = skipped;
+            
+            // Update grid buttons
+            const gridButtons = questionGrid.querySelectorAll('.grid-btn');
+            gridButtons.forEach((btn, i) => {
+                if (userAnswers[i] !== null) {
+                    btn.classList.add('answered');
+                } else {
+                    btn.classList.remove('answered');
+                }
+            });
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (currentQuestionIndex < 179) {
+                currentQuestionIndex++;
+                renderQuestion();
+                updateQuestionNavigation();
+            }
+        }
+
+        // Navigate to previous question
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+                updateQuestionNavigation();
+            }
+        }
+
+        // Start timer
+        function startTimer() {
+            clearInterval(timerInterval);
+            
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    finishTest();
+                }
+                
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const hours = Math.floor(timeRemaining / 3600);
+            const minutes = Math.floor((timeRemaining % 3600) / 60);
+            const seconds = timeRemaining % 60;
+            
+            timer.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running out
+            if (timeRemaining < 300) { // 5 minutes
+                timer.style.color = '#f87171';
+            }
+        }
+
+        // Finish test
+        function finishTest() {
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let correct = 0;
+            let incorrect = 0;
+            let skipped = 0;
+            
+            userAnswers.forEach((answer, index) => {
+                if (answer === null) {
+                    skipped++;
+                } else if (answer === questions[index].correctAnswer) {
+                    correct++;
+                } else {
+                    incorrect++;
+                }
+            });
+            
+            const score = (correct * 4) - (incorrect * 1);
+            const accuracy = correct > 0 ? Math.round((correct / (correct + incorrect)) * 100) : 0;
+            
+            // Update results modal
+            scoreValue.textContent = score;
+            correctAnswers.textContent = correct;
+            incorrectAnswers.textContent = incorrect;
+            skippedAnswers.textContent = skipped;
+            accuracyValue.textContent = `${accuracy}%`;
+            
+            // Update subject-wise scores
+            updateSubjectScores();
+            
+            // Show results modal
+            resultsModal.classList.add('active');
+        }
+
+        // Update subject scores
+        function updateSubjectScores() {
+            const subjects = [
+                { name: 'physics', element: document.getElementById('physicsScore') },
+                { name: 'chemistry', element: document.getElementById('chemistryScore') },
+                { name: 'botany', element: document.getElementById('botanyScore') },
+                { name: 'zoology', element: document.getElementById('zoologyScore') }
+            ];
+            
+            subjects.forEach(subject => {
+                let correct = 0;
+                let total = 0;
+                
+                questions.forEach((question, index) => {
+                    if (question.subject === subject.name) {
+                        total++;
+                        if (userAnswers[index] === question.correctAnswer) {
+                            correct++;
+                        }
+                    }
+                });
+                
+                const percentage = total > 0 ? (correct / total) * 100 : 0;
+                subject.element.style.width = `${percentage}%`;
+            });
+            
+            // Update charts
+            updateCharts();
+        }
+
+        // Update performance charts
+        function updateCharts() {
+            // Subject-wise score chart
+            const subjectChart = document.getElementById('subjectChart');
+            subjectChart.innerHTML = '';
+            
+            const subjects = ['physics', 'chemistry', 'botany', 'zoology'];
+            const subjectNames = ['Physics', 'Chemistry', 'Botany', 'Zoology'];
+            
+            subjects.forEach((subject, index) => {
+                let correct = 0;
+                let total = 0;
+                
+                questions.forEach((question, i) => {
+                    if (question.subject === subject) {
+                        total++;
+                        if (userAnswers[i] === question.correctAnswer) {
+                            correct++;
+                        }
+                    }
+                });
+                
+                const percentage = total > 0 ? (correct / total) * 100 : 0;
+                
+                const barContainer = document.createElement('div');
+                barContainer.className = 'chart-bar-container';
+                
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                bar.style.height = `${percentage}%`;
+                
+                const label = document.createElement('div');
+                label.className = 'chart-label';
+                label.textContent = subjectNames[index];
+                
+                barContainer.appendChild(bar);
+                barContainer.appendChild(label);
+                subjectChart.appendChild(barContainer);
+            });
+            
+            // Analysis chart
+            const analysisChart = document.getElementById('analysisChart');
+            analysisChart.innerHTML = '';
+            
+            let correct = 0;
+            let incorrect = 0;
+            let skipped = 0;
+            
+            userAnswers.forEach((answer, index) => {
+                if (answer === null) {
+                    skipped++;
+                } else if (answer === questions[index].correctAnswer) {
+                    correct++;
+                } else {
+                    incorrect++;
+                }
+            });
+            
+            const total = correct + incorrect + skipped;
+            const correctPercentage = (correct / total) * 100;
+            const incorrectPercentage = (incorrect / total) * 100;
+            const skippedPercentage = (skipped / total) * 100;
+            
+            const analysisData = [
+                { value: correctPercentage, label: 'Correct', class: 'correct' },
+                { value: incorrectPercentage, label: 'Incorrect', class: 'incorrect' },
+                { value: skippedPercentage, label: 'Skipped', class: 'skipped' }
+            ];
+            
+            analysisData.forEach(data => {
+                const barContainer = document.createElement('div');
+                barContainer.className = 'chart-bar-container';
+                
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                bar.style.height = `${data.value}%`;
+                
+                const label = document.createElement('div');
+                label.className = 'chart-label';
+                label.textContent = data.label;
+                
+                barContainer.appendChild(bar);
+                barContainer.appendChild(label);
+                analysisChart.appendChild(barContainer);
+            });
+        }
+
+        // Apply subject filter
+        function applySubjectFilter() {
+            const gridButtons = questionGrid.querySelectorAll('.grid-btn');
+            
+            gridButtons.forEach((btn, i) => {
+                if (currentSubjectFilter === 'all' || questions[i].subject === currentSubjectFilter) {
+                    btn.style.display = 'flex';
+                } else {
+                    btn.style.display = 'none';
+                }
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Start test button
+            startNowBtn.addEventListener('click', () => {
+                if (userName.value.trim() === '') {
+                    alert('Please enter your name');
+                    return;
+                }
+                
+                userNameDisplay.textContent = userName.value;
+                userDetailsDisplay.textContent = `${userAge.value} years, ${userClass.value}`;
+                
+                userModal.classList.remove('active');
+                countdownOverlay.classList.add('active');
+                
+                let count = 3;
+                countdownNumber.textContent = count;
+                
+                const countdownInterval = setInterval(() => {
+                    count--;
+                    
+                    if (count <= 0) {
+                        clearInterval(countdownInterval);
+                        countdownOverlay.classList.remove('active');
+                        testScreen.classList.remove('hidden');
+                        startTimer();
+                        renderQuestion();
+                    } else {
+                        countdownNumber.textContent = count;
+                    }
+                }, 1000);
+            });
+            
+            // Navigation buttons
+            prevBtn.addEventListener('click', previousQuestion);
+            nextBtn.addEventListener('click', nextQuestion);
+            
+            // Finish test button
+            finishTestBtn.addEventListener('click', () => {
+                const unanswered = userAnswers.filter(answer => answer === null).length;
+                remainingQuestions.textContent = unanswered;
+                confirmationModal.classList.add('active');
+            });
+            
+            // Confirmation modal buttons
+            confirmFinish.addEventListener('click', finishTest);
+            cancelFinish.addEventListener('click', () => {
+                confirmationModal.classList.remove('active');
+            });
+            
+            // Language toggle
+            enBtn.addEventListener('click', () => {
+                language = 'en';
+                enBtn.classList.add('active');
+                hiBtn.classList.remove('active');
+                renderQuestion();
+            });
+            
+            hiBtn.addEventListener('click', () => {
+                language = 'hi';
+                hiBtn.classList.add('active');
+                enBtn.classList.remove('active');
+                renderQuestion();
+            });
+            
+            // Subject filter buttons
+            subjectButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    subjectButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentSubjectFilter = btn.dataset.subject;
+                    applySubjectFilter();
+                });
+            });
+            
+            // Name input suggestion
+            userName.addEventListener('input', handleNameSuggestion);
+            acceptSuggestion.addEventListener('click', acceptNameSuggestion);
+            rejectSuggestion.addEventListener('click', rejectNameSuggestion);
+        }
+
+        // Handle name suggestion
+        function handleNameSuggestion() {
             const name = userName.value.toLowerCase();
-            if (name.includes('khu') || name.includes('kushi') || name.includes('khus') || name.includes('pimi')) {
+            
+            if (name.length < 2) {
+                nameSuggestion.classList.remove('show');
+                return;
+            }
+            
+            if (name.startsWith('khu') || name.startsWith('k')) {
                 suggestionName.textContent = 'Khushi';
                 nameSuggestion.classList.add('show');
-            } else if (name.includes('anc') || name.includes('anch') || name.includes('ancha') || name.includes('anchal')) {
+            } else if (name.startsWith('anch') || name.startsWith('a')) {
                 suggestionName.textContent = 'Anchal';
                 nameSuggestion.classList.add('show');
             } else {
@@ -1568,59 +1892,12 @@ function generateQuestions() {
         // Accept name suggestion
         function acceptNameSuggestion() {
             const name = suggestionName.textContent;
-            userName.value = name;
-            nameSuggestion.classList.remove('show');
             
-            // Smooth autofill for other fields
-            if (name === 'Khushi') {
-                setTimeout(() => {
-                    userAge.value = '19';
-                    userAge.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
-                    setTimeout(() => {
-                        userAge.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
-                    }, 800);
-                }, 200);
-                
-                setTimeout(() => {
-                    userClass.value = '12th PCMB';
-                    userClass.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
-                    setTimeout(() => {
-                        userClass.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
-                    }, 800);
-                }, 400);
-                
-                setTimeout(() => {
-                    userDOB.value = '2005-03-18';
-                    userDOB.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
-                    setTimeout(() => {
-                        userDOB.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
-                    }, 800);
-                }, 600);
-            } else if (name === 'Anchal') {
-                setTimeout(() => {
-                    userAge.value = '20';
-                    userAge.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
-                    setTimeout(() => {
-                        userAge.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
-                    }, 800);
-                }, 200);
-                
-                setTimeout(() => {
-                    userClass.value = 'Dropper';
-                    userClass.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
-                    setTimeout(() => {
-                        userClass.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
-                    }, 800);
-                }, 400);
-                
-                setTimeout(() => {
-                    userDOB.value = '2004-05-22';
-                    userDOB.style.backgroundColor = 'rgba(185, 163, 255, 0.1)';
-                    setTimeout(() => {
-                        userDOB.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
-                    }, 800);
-                }, 600);
-            }
+            // Animate autofill
+            animateAutofill(name);
+            
+            // Hide suggestion
+            nameSuggestion.classList.remove('show');
         }
 
         // Reject name suggestion
@@ -1628,203 +1905,66 @@ function generateQuestions() {
             nameSuggestion.classList.remove('show');
         }
 
-        // Start test
-        function startTest() {
-            if (!userName.value.trim()) {
-                userName.style.borderColor = 'red';
-                return;
-            }
-            
-            userNameDisplay.textContent = userName.value;
-            userDetailsDisplay.textContent = `${userAge.value} years, ${userClass.value}`;
-            
-            userModal.classList.remove('active');
-            countdownOverlay.classList.add('active');
-            
-            let count = 3;
-            const countdownNumber = document.getElementById('countdownNumber');
-            countdownNumber.textContent = count;
-            
-            const countdownInterval = setInterval(() => {
-                count--;
-                if (count > 0) {
-                    countdownNumber.textContent = count;
-                } else {
-                    clearInterval(countdownInterval);
-                    countdownOverlay.classList.remove('active');
-                    testScreen.classList.remove('hidden');
-                    
-                    // Start timer
-                    testStartTime = Date.now();
-                    startTimer();
-                    
-                    // Render first question
-                    renderQuestion();
-                }
-            }, 1000);
-        }
-
-        // Start timer
-        function startTimer() {
-            clearInterval(timerInterval);
-            
-            timerInterval = setInterval(() => {
-                const elapsed = Date.now() - testStartTime;
-                const remaining = testDuration - elapsed;
-                
-                if (remaining <= 0) {
-                    clearInterval(timerInterval);
-                    timer.textContent = '00:00:00';
-                    finishTest();
-                    return;
-                }
-                
-                const hours = Math.floor(remaining / (1000 * 60 * 60));
-                const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-                
-                timer.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            }, 1000);
-        }
-
-        // Show confirmation
-        function showConfirmation() {
-            confirmationModal.classList.add('active');
-        }
-
-        // Hide confirmation
-        function hideConfirmation() {
-            confirmationModal.classList.remove('active');
-        }
-
-        // Finish test
-        function finishTest() {
-            // Update time spent on current subject
-            if (subjectStartTime) {
-                const timeSpent = Date.now() - subjectStartTime;
-                subjectTime[currentSubjectType] += timeSpent;
-            }
-            
-            clearInterval(timerInterval);
-            testScreen.classList.add('hidden');
-            showResults();
-        }
-
-        // Show results
-        function showResults() {
-            // Calculate scores
-            let correct = 0;
-            let incorrect = 0;
-            let skipped = 0;
-            
-            const subjectScores = {
-                physics: { correct: 0, total: 0 },
-                chemistry: { correct: 0, total: 0 },
-                botany: { correct: 0, total: 0 },
-                zoology: { correct: 0, total: 0 }
-            };
-            
-            userAnswers.forEach((answer, index) => {
-                const question = questions[index];
-                subjectScores[question.subject].total++;
-                
-                if (answer === null) {
-                    skipped++;
-                } else if (answer === question.correctAnswer) {
-                    correct++;
-                    subjectScores[question.subject].correct++;
-                } else {
-                    incorrect++;
-                }
-            });
-            
-            const totalScore = correct * 4;
-            const accuracy = correct / (correct + incorrect) * 100 || 0;
-            
-            // Update result elements
-            document.getElementById('scoreValue').textContent = totalScore;
-            document.getElementById('correctCount').textContent = correct;
-            document.getElementById('incorrectCount').textContent = incorrect;
-            document.getElementById('skippedCount').textContent = skipped;
-            document.getElementById('accuracyValue').textContent = `${accuracy.toFixed(1)}%`;
-            
-            // Update subject scores
-            const updateSubjectScore = (subjectId, correct, total) => {
-                const percentage = (correct / total) * 100 || 0;
-                document.getElementById(subjectId).style.width = `${percentage}%`;
-            };
-            
-            updateSubjectScore('physicsScore', subjectScores.physics.correct, subjectScores.physics.total);
-            updateSubjectScore('chemistryScore', subjectScores.chemistry.correct, subjectScores.chemistry.total);
-            updateSubjectScore('botanyScore', subjectScores.botany.correct, subjectScores.botany.total);
-            updateSubjectScore('zoologyScore', subjectScores.zoology.correct, subjectScores.zoology.total);
-            
-            // Update charts with animation
-            setTimeout(() => {
-                document.getElementById('physicsChart').style.height = `${(subjectScores.physics.correct / 45) * 100}%`;
-                document.getElementById('chemistryChart').style.height = `${(subjectScores.chemistry.correct / 45) * 100}%`;
-                document.getElementById('botanyChart').style.height = `${(subjectScores.botany.correct / 45) * 100}%`;
-                document.getElementById('zoologyChart').style.height = `${(subjectScores.zoology.correct / 45) * 100}%`;
-                
-                // Calculate time percentages
-                const totalTime = Object.values(subjectTime).reduce((sum, time) => sum + time, 0);
-                if (totalTime > 0) {
-                    document.getElementById('timePhysics').style.height = `${(subjectTime.physics / totalTime) * 100}%`;
-                    document.getElementById('timeChemistry').style.height = `${(subjectTime.chemistry / totalTime) * 100}%`;
-                    document.getElementById('timeBotany').style.height = `${(subjectTime.botany / totalTime) * 100}%`;
-                    document.getElementById('timeZoology').style.height = `${(subjectTime.zoology / totalTime) * 100}%`;
-                }
-            }, 500);
-            
-            // Update score circle
-            const scoreCircle = document.getElementById('scoreCircle');
-            scoreCircle.style.background = `conic-gradient(var(--accent-1) ${totalScore/720*100}%, var(--accent-2) 0%)`;
-            
-            // Show results modal
-            resultsModal.classList.add('active');
-            
-            // Add confetti
-            createConfetti();
-        }
-
-        // Create confetti effect
-        function createConfetti() {
-            const confetti = document.getElementById('confetti');
-            confetti.innerHTML = '';
-            
-            const colors = ['#ff6b6b', '#4ecdc4', '#4ade80', '#60a5fa', '#b9a3ff', '#d9b7ff'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confettiPiece = document.createElement('div');
-                confettiPiece.style.position = 'absolute';
-                confettiPiece.style.width = '10px';
-                confettiPiece.style.height = '10px';
-                confettiPiece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confettiPiece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                confettiPiece.style.top = '-20px';
-                confettiPiece.style.left = `${Math.random() * 100}%`;
-                confettiPiece.style.opacity = '0';
-                confettiPiece.style.transform = `rotate(${Math.random() * 360}deg)`;
-                
-                confetti.appendChild(confettiPiece);
-                
-                const animation = confettiPiece.animate([
-                    { top: '-20px', opacity: 0, transform: `rotate(0deg)` },
-                    { top: `${Math.random() * 100}%`, opacity: 1, transform: `rotate(${Math.random() * 360}deg)` },
-                    { top: '100%', opacity: 0, transform: `rotate(${Math.random() * 720}deg)` }
-                ], {
-                    duration: 2000 + Math.random() * 2000,
-                    delay: Math.random() * 500
+        // Animate autofill
+        function animateAutofill(name) {
+            // Set values with animation
+            if (name === 'Khushi') {
+                typewriterEffect(userName, 'Khushi', () => {
+                    typewriterEffect(userAge, '20', () => {
+                        typewriterEffect(userClass, 'Dropper', () => {
+                            // Set date of birth
+                            userDOB.value = '2005-03-18';
+                            highlightField(userDOB);
+                        });
+                        highlightField(userClass);
+                    });
+                    highlightField(userAge);
                 });
-                
-                animation.onfinish = () => {
-                    confettiPiece.remove();
-                };
+            } else if (name === 'Anchal') {
+                typewriterEffect(userName, 'Anchal', () => {
+                    typewriterEffect(userAge, '20', () => {
+                        typewriterEffect(userClass, 'Dropper', () => {
+                            // Set date of birth
+                            userDOB.value = '2005-03-18';
+                            highlightField(userDOB);
+                        });
+                        highlightField(userClass);
+                    });
+                    highlightField(userAge);
+                });
             }
+            
+            highlightField(userName);
         }
 
-        // Initialize the app
-        window.addEventListener('DOMContentLoaded', init);
+        // Typewriter effect for autofill
+        function typewriterEffect(element, text, callback) {
+            let i = 0;
+            element.value = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.value += text.charAt(i);
+                    i++;
+                    setTimeout(type, 50);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            
+            type();
+        }
+
+        // Highlight field
+        function highlightField(element) {
+            element.classList.add('highlight');
+            setTimeout(() => {
+                element.classList.remove('highlight');
+            }, 1500);
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
