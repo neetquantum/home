@@ -1281,72 +1281,13 @@
     </div>
 
     <script>
-        // Global variables
-        let questions = [];
-        let userAnswers = Array(180).fill(null);
-        let currentQuestionIndex = 0;
-        let timerInterval;
-        let timeRemaining = 3 * 60 * 60; // 3 hours in seconds
-        let language = 'en';
-        let skippedQuestions = [];
-        let currentSubjectFilter = 'all';
-
-        // DOM Elements
-        const testScreen = document.getElementById('testScreen');
-        const userModal = document.getElementById('userModal');
-        const countdownOverlay = document.getElementById('countdownOverlay');
-        const confirmationModal = document.getElementById('confirmationModal');
-        const resultsModal = document.getElementById('resultsModal');
-        const userName = document.getElementById('userName');
-        const userAge = document.getElementById('userAge');
-        const userClass = document.getElementById('userClass');
-        const userDOB = document.getElementById('userDOB');
-        const startNowBtn = document.getElementById('startNowBtn');
-        const currentQuestionElement = document.getElementById('currentQuestion');
-        const questionText = document.getElementById('questionText');
-        const optionsContainer = document.getElementById('optionsContainer');
-        const questionGrid = document.getElementById('questionGrid');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const finishTestBtn = document.getElementById('finishTestBtn');
-        const timer = document.getElementById('timer');
-        const attemptedCount = document.getElementById('attemptedCount');
-        const skippedCountDisplay = document.getElementById('skippedCountDisplay');
-        const userNameDisplay = document.getElementById('userNameDisplay');
-        const userDetailsDisplay = document.getElementById('userDetailsDisplay');
-        const currentSubject = document.getElementById('currentSubject');
-        const enBtn = document.getElementById('enBtn');
-        const hiBtn = document.getElementById('hiBtn');
-        const subjectButtons = document.querySelectorAll('.subject-btn');
-        const countdownNumber = document.getElementById('countdownNumber');
-        const confirmFinish = document.getElementById('confirmFinish');
-        const cancelFinish = document.getElementById('cancelFinish');
-        const remainingQuestions = document.getElementById('remainingQuestions');
-        const scoreValue = document.getElementById('scoreValue');
-        const correctAnswers = document.getElementById('correctAnswers');
-        const incorrectAnswers = document.getElementById('incorrectAnswers');
-        const skippedAnswers = document.getElementById('skippedAnswers');
-        const accuracyValue = document.getElementById('accuracyValue');
-        const nameSuggestion = document.getElementById('nameSuggestion');
-        const suggestionName = document.getElementById('suggestionName');
-        const acceptSuggestion = document.getElementById('acceptSuggestion');
-        const rejectSuggestion = document.getElementById('rejectSuggestion');
-
-        // Initialize the app
-        function init() {
-            generateQuestions();
-            renderQuestionGrid();
-            updateQuestionNavigation();
-            updateProgress();
-            setupEventListeners();
-        }
-
-      
- /const uploadedJSON = {
-  exam: "NEET Mock Test",
-  total_questions: 180,
-  questions: [
-    {
+         // Global uploadedJSON variable with all 180 questions
+    const uploadedJSON = {
+        exam: "NEET Mock Test",
+        total_questions: 180,
+        questions: [
+            // YAHAN APNE 180 QUESTIONS KA PURA DATA PASTE KAR DO
+     {
       id: 1,
       subject: "physics",
       subjectName: "Physics",
@@ -5127,114 +5068,120 @@
       correctAnswer: 0
     }
   ]
-}; 
-          // Generate questions array with 180 items (45 per subject)
-        async function generateQuestions() {
-            try { 
-                let jsonData;
-                if (typeof uploadedJSON !== 'undefined') {
-                    // Use the global variable if available
-                    jsonData = uploadedJSON;
-                } else {
-                    // Otherwise fetch from the file
-                    const response = await fetch('neet_180_questions_formatted.json');
-                    if (!response.ok) throw new Error('Failed to fetch JSON');
-                    jsonData = await response.json();
-                }
+};   
+        // Global variables
+        let questions = [];
+        let userAnswers = Array(180).fill(null);
+        let currentQuestionIndex = 0;
+        let timerInterval;
+        let timeRemaining = 3 * 60 * 60; // 3 hours in seconds
+        let language = 'en';
+        let skippedQuestions = [];
+        let currentSubjectFilter = 'all';
 
-                const subjects = [
-                    { name: 'physics', displayName: 'Physics', start: 0, end: 44 },
-                    { name: 'chemistry', displayName: 'Chemistry', start: 45, end: 89 },
-                    { name: 'botany', displayName: 'Botany', start: 90, end: 134 },
-                    { name: 'zoology', displayName: 'Zoology', start: 135, end: 179 }
-                ];
+        // DOM Elements
+        const testScreen = document.getElementById('testScreen');
+        const userModal = document.getElementById('userModal');
+        const countdownOverlay = document.getElementById('countdownOverlay');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const resultsModal = document.getElementById('resultsModal');
+        const userName = document.getElementById('userName');
+        const userAge = document.getElementById('userAge');
+        const userClass = document.getElementById('userClass');
+        const userDOB = document.getElementById('userDOB');
+        const startNowBtn = document.getElementById('startNowBtn');
+        const currentQuestionElement = document.getElementById('currentQuestion');
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const questionGrid = document.getElementById('questionGrid');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const finishTestBtn = document.getElementById('finishTestBtn');
+        const timer = document.getElementById('timer');
+        const attemptedCount = document.getElementById('attemptedCount');
+        const skippedCountDisplay = document.getElementById('skippedCountDisplay');
+        const userNameDisplay = document.getElementById('userNameDisplay');
+        const userDetailsDisplay = document.getElementById('userDetailsDisplay');
+        const currentSubject = document.getElementById('currentSubject');
+        const enBtn = document.getElementById('enBtn');
+        const hiBtn = document.getElementById('hiBtn');
+        const subjectButtons = document.querySelectorAll('.subject-btn');
+        const countdownNumber = document.getElementById('countdownNumber');
+        const confirmFinish = document.getElementById('confirmFinish');
+        const cancelFinish = document.getElementById('cancelFinish');
+        const remainingQuestions = document.getElementById('remainingQuestions');
+        const scoreValue = document.getElementById('scoreValue');
+        const correctAnswers = document.getElementById('correctAnswers');
+        const incorrectAnswers = document.getElementById('incorrectAnswers');
+        const skippedAnswers = document.getElementById('skippedAnswers');
+        const accuracyValue = document.getElementById('accuracyValue');
+        const nameSuggestion = document.getElementById('nameSuggestion');
+        const suggestionName = document.getElementById('suggestionName');
+        const acceptSuggestion = document.getElementById('acceptSuggestion');
+        const rejectSuggestion = document.getElementById('rejectSuggestion');
 
-                // Create placeholder questions for all 180 slots
-                questions = Array(180).fill(null).map((_, index) => {
-                    let subject = '';
-                    let subjectName = '';
-                    
-                    if (index <= 44) {
-                        subject = 'physics';
-                        subjectName = 'Physics';
-                    } else if (index <= 89) {
-                        subject = 'chemistry';
-                        subjectName = 'Chemistry';
-                    } else if (index <= 134) {
-                        subject = 'botany';
-                        subjectName = 'Botany';
-                    } else {
-                        subject = 'zoology';
-                        subjectName = 'Zoology';
-                    }
-                    
-                    return {
-                        id: index + 1,
-                        subject: subject,
-                        subjectName: subjectName,
-                        question_en: 'Placeholder question — to be filled later',
-                        question_hi: 'प्लेसहोल्डर प्रश्न - बाद में भरा जाएगा',
-                        options_en: ['Option A', 'Option B', 'Option C', 'Option D'],
-                        options_hi: ['विकल्प A', 'विकल्प B', 'विकल्प C', 'विकल्प D'],
-                        correctAnswer: 0
-                    };
-                });
+        // Initialize the app
+        function init() {
+            generateQuestions();
+            renderQuestionGrid();
+            updateQuestionNavigation();
+            updateProgress();
+            setupEventListeners();
+        }
 
-                // Replace first 3 questions for each subject with real questions from JSON
-                subjects.forEach(subject => {
-                    const subjectQuestions = jsonData.questions.filter(q => 
-                        q.subject.toLowerCase() === subject.name.toLowerCase()
-                    ).slice(0, 3);
-                    
-                    subjectQuestions.forEach((q, i) => {
-                        const targetIndex = subject.start + i;
-                        questions[targetIndex] = {
-                            id: targetIndex + 1,
-                            subject: subject.name,
-                            subjectName: subject.displayName,
-                            question_en: q.question_en || q.question,
-                            question_hi: q.question_hi || q.question,
-                            options_en: q.options_en || q.options,
-                            options_hi: q.options_hi || q.options,
+                    // Generate questions array with 180 items (all real questions)
+            async function generateQuestions() {
+                try {
+                    // Use the global uploadedJSON variable with all 180 questions
+                    questions = uploadedJSON.questions.map((q, index) => {
+                        return {
+                            id: index + 1,
+                            subject: q.subject,
+                            subjectName: q.subjectName,
+                            chapter: q.chapter,
+                            question_en: q.question_en,
+                            question_hi: q.question_hi,
+                            options_en: q.options_en,
+                            options_hi: q.options_hi,
                             correctAnswer: q.correctAnswer
                         };
                     });
-                });
-            } catch (error) {
-                console.error('Error loading questions:', error);
-                // Fallback: create placeholder questions if JSON loading fails
-                questions = Array(180).fill(null).map((_, index) => {
-                    let subject = '';
-                    let subjectName = '';
-                    
-                    if (index <= 44) {
-                        subject = 'physics';
-                        subjectName = 'Physics';
-                    } else if (index <= 89) {
-                        subject = 'chemistry';
-                        subjectName = 'Chemistry';
-                    } else if (index <= 134) {
-                        subject = 'botany';
-                        subjectName = 'Botany';
-                    } else {
-                        subject = 'zoology';
-                        subjectName = 'Zoology';
-                    }
-                    
-                    return {
-                        id: index + 1,
-                        subject: subject,
-                        subjectName: subjectName,
-                        question_en: 'Placeholder question — to be filled later',
-                        question_hi: 'प्लेसहोल्डर प्रश्न - बाद में भरा जाएगा',
-                        options_en: ['Option A', 'Option B', 'Option C', 'Option D'],
-                        options_hi: ['विकल्प A', 'विकल्प B', 'विकल्प C', 'विकल्प D'],
-                        correctAnswer: 0
-                    };
-                });
+                } catch (error) {
+                    console.error('Error loading questions:', error);
+                    // Fallback: create placeholder questions if loading fails
+                    questions = Array(180).fill(null).map((_, index) => {
+                        let subject = '';
+                        let subjectName = '';
+                        
+                        if (index <= 44) {
+                            subject = 'physics';
+                            subjectName = 'Physics';
+                        } else if (index <= 89) {
+                            subject = 'chemistry';
+                            subjectName = 'Chemistry';
+                        } else if (index <= 134) {
+                            subject = 'botany';
+                            subjectName = 'Botany';
+                        } else {
+                            subject = 'zoology';
+                            subjectName = 'Zoology';
+                        }
+                        
+                        return {
+                            id: index + 1,
+                            subject: subject,
+                            subjectName: subjectName,
+                            question_en: 'Placeholder question — to be filled later',
+                            question_hi: 'प्लेसहोल्डर प्रश्न - बाद में भरा जाएगा',
+                            options_en: ['Option A', 'Option B', 'Option C', 'Option D'],
+                            options_hi: ['विकल्प A', 'विकल्प B', 'विकल्प C', 'विकल्प D'],
+                            correctAnswer: 0
+                        };
+                    });
+                }
             }
-        }
 
+        
         // Render question grid
         function renderQuestionGrid() {
             questionGrid.innerHTML = '';
