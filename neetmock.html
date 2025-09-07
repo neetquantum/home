@@ -1341,10 +1341,3796 @@
             setupEventListeners();
         }
 
-        // Generate questions array with 180 items (45 per subject)
+      
+ /const uploadedJSON = {
+  exam: "NEET Mock Test",
+  total_questions: 180,
+  questions: [
+    {
+      id: 1,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Units & Measurement",
+      question_en: "Which of the following pairs has the same dimension?",
+      question_hi: "निम्नलिखित में से किस युग्म का आयाम समान है?",
+      options_en: [
+        "Work",
+        "Power",
+        "Energy",
+        "Momentum"
+      ],
+      options_hi: [
+        "कार्य",
+        "शक्ति",
+        "ऊर्जा",
+        "गति राशि"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 2,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Units & Measurement",
+      question_en: "If the error in radius of a sphere is 2%, the error in its volume will be:",
+      question_hi: "यदि गोले की त्रिज्या में 2% त्रुटि है, तो आयतन में त्रुटि होगी:",
+      options_en: [
+        "2%",
+        "4%",
+        "6%",
+        "8%"
+      ],
+      options_hi: [
+        "2%",
+        "4%",
+        "6%",
+        "8%"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 3,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Units & Measurement",
+      question_en: "A dimensionless constant is:",
+      question_hi: "एक विमाहीन स्थिरांक है:",
+      options_en: [
+        "Planck’s constant",
+        "Refractive index",
+        "Boltzmann constant",
+        "Gravitational constant"
+      ],
+      options_hi: [
+        "प्लैंक स्थिरांक",
+        "अपवर्तांक",
+        "बोल्ट्ज़मान स्थिरांक",
+        "गुरुत्वाकर्षण स्थिरांक"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 4,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Motion in Straight Line",
+      question_en: "A particle covers first half of distance with speed 10 m/s and next half with speed 20 m/s. Average speed is:",
+      question_hi: "एक कण आधी दूरी 10 m/s तथा शेष आधी 20 m/s से तय करता है। औसत वेग होगा:",
+      options_en: [
+        "12 m/s",
+        "13.3 m/s",
+        "15 m/s",
+        "16.5 m/s"
+      ],
+      options_hi: [
+        "12 m/s",
+        "13.3 m/s",
+        "15 m/s",
+        "16.5 m/s"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 5,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Motion in Straight Line",
+      question_en: "Which graph correctly represents uniformly accelerated motion?",
+      question_hi: "समान त्वरण गति का सही ग्राफ कौन-सा है?",
+      options_en: [
+        "Displacement-time parabola",
+        "Velocity-time curve",
+        "Acceleration-time parabola",
+        "Displacement-time straight line"
+      ],
+      options_hi: [
+        "विस्थापन-समय परबोला",
+        "वेग-समय वक्र",
+        "त्वरण-समय परबोला",
+        "विस्थापन-समय सीधी रेखा"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 6,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Motion in a Plane",
+      question_en: "For a projectile, the ratio of maximum height (H) to horizontal range (R) when angle of projection is 45°:",
+      question_hi: "एक प्रक्षेप्य के लिए 45° पर H/R होगा:",
+      options_en: [
+        "1/4",
+        "1/2",
+        "1",
+        "2"
+      ],
+      options_hi: [
+        "1/4",
+        "1/2",
+        "1",
+        "2"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 7,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Motion in a Plane",
+      question_en: "A body is projected at 30° with speed 20 m/s. Time of flight = ? (g=10)",
+      question_hi: "20 m/s की गति से 30° पर फेंकी गई वस्तु का उड़ान समय = ?",
+      options_en: [
+        "1 s",
+        "2 s",
+        "3 s",
+        "4 s"
+      ],
+      options_hi: [
+        "1 s",
+        "2 s",
+        "3 s",
+        "4 s"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 8,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Laws of Motion",
+      question_en: "A body of mass 10 kg is pulled with force 20 N. Friction force is 10 N. Acceleration = ?",
+      question_hi: "10 kg की वस्तु को 20 N बल से खींचा जाता है। घर्षण बल 10 N है। त्वरण = ?",
+      options_en: [
+        "1 m/s²",
+        "2 m/s²",
+        "3 m/s²",
+        "4 m/s²"
+      ],
+      options_hi: [
+        "1 m/s²",
+        "2 m/s²",
+        "3 m/s²",
+        "4 m/s²"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 9,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Laws of Motion",
+      question_en: "Impulse is equal to:",
+      question_hi: "आघात बराबर होता है:",
+      options_en: [
+        "Change in force",
+        "Change in velocity",
+        "Change in momentum",
+        "Change in energy"
+      ],
+      options_hi: [
+        "बल में परिवर्तन",
+        "वेग में परिवर्तन",
+        "गति राशि में परिवर्तन",
+        "ऊर्जा में परिवर्तन"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 10,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Laws of Motion",
+      question_en: "Which of the following is a pseudo force?",
+      question_hi: "निम्नलिखित में से कौन-सा एक कल्पित बल है?",
+      options_en: [
+        "Friction",
+        "Centrifugal force",
+        "Gravitational force",
+        "Normal reaction"
+      ],
+      options_hi: [
+        "घर्षण",
+        "अपकेन्द्रीय बल",
+        "गुरुत्वीय बल",
+        "सामान्य अभिक्रिया"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 11,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Work, Energy, Power",
+      question_en: "A body of mass 2 kg moves with speed 4 m/s. Kinetic energy = ?",
+      question_hi: "द्रव्यमान 2 kg की वस्तु 4 m/s की गति से चलती है। गतिज ऊर्जा = ?",
+      options_en: [
+        "4 J",
+        "8 J",
+        "16 J",
+        "32 J"
+      ],
+      options_hi: [
+        "4 J",
+        "8 J",
+        "16 J",
+        "32 J"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 12,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Work, Energy, Power",
+      question_en: "Work done by a centripetal force is always:",
+      question_hi: "अभिकेन्द्र बल द्वारा किया गया कार्य सदैव:",
+      options_en: [
+        "Positive",
+        "Negative",
+        "Zero",
+        "Variable"
+      ],
+      options_hi: [
+        "धनात्मक",
+        "ऋणात्मक",
+        "शून्य",
+        "परिवर्ती"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 13,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Work, Energy, Power",
+      question_en: "If velocity of body becomes double, its kinetic energy becomes:",
+      question_hi: "यदि किसी वस्तु का वेग दोगुना हो जाए, तो गतिज ऊर्जा:",
+      options_en: [
+        "2 times",
+        "3 times",
+        "4 times",
+        "8 times"
+      ],
+      options_hi: [
+        "दो गुना",
+        "तीन गुना",
+        "चार गुना",
+        "आठ गुना"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 14,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Work, Energy, Power",
+      question_en: "1 kilowatt-hour (kWh) = ?",
+      question_hi: "1 किलोवाट-घंटा = ?",
+      options_en: [
+        "1 J",
+        "1000 J",
+        "3.6 × 10⁶ J",
+        "360 J"
+      ],
+      options_hi: [
+        "1 J",
+        "1000 J",
+        "3.6 × 10⁶ J",
+        "360 J"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 15,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Circular Motion",
+      question_en: "A car moving at 20 m/s on a curve of radius 40 m. Centripetal acceleration = ?",
+      question_hi: "20 m/s की कार 40 m त्रिज्या वाले मोड़ पर चल रही है। अभिकेन्द्र त्वरण = ?",
+      options_en: [
+        "5 m/s²",
+        "10 m/s²",
+        "15 m/s²",
+        "20 m/s²"
+      ],
+      options_hi: [
+        "5 m/s²",
+        "10 m/s²",
+        "15 m/s²",
+        "20 m/s²"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 16,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Circular Motion",
+      question_en: "In vertical circular motion, minimum speed at lowest point = ?",
+      question_hi: "ऊर्ध्वाधर वृत्तीय गति में, न्यूनतम वेग (निचले बिंदु पर) = ?",
+      options_en: [
+        "√(rg)",
+        "√(2rg)",
+        "√(3rg)",
+        "√(5rg)"
+      ],
+      options_hi: [
+        "√(rg)",
+        "√(2rg)",
+        "√(3rg)",
+        "√(5rg)"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 17,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Circular Motion",
+      question_en: "Angular velocity (ω) and linear velocity (v) are related as:",
+      question_hi: "कोणीय वेग (ω) और रैखिक वेग (v) का संबंध है:",
+      options_en: [
+        "v = ωr",
+        "v = ω/r",
+        "v = r/ω",
+        "v = ω²r"
+      ],
+      options_hi: [
+        "v = ωr",
+        "v = ω/r",
+        "v = r/ω",
+        "v = ω²r"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 18,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Oscillations",
+      question_en: "Time period of a simple pendulum increases if:",
+      question_hi: "सरल लोलक की आवर्त अवधि बढ़ेगी यदि:",
+      options_en: [
+        "Mass increases",
+        "Length increases",
+        "Amplitude decreases",
+        "g increases"
+      ],
+      options_hi: [
+        "द्रव्यमान बढ़ता है",
+        "लंबाई बढ़ती है",
+        "आयाम घटता है",
+        "g बढ़ता है"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 19,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Oscillations",
+      question_en: "Frequency of simple harmonic motion depends on:",
+      question_hi: "सरल आवर्त गति की आवृत्ति निर्भर करती है:",
+      options_en: [
+        "Amplitude",
+        "Mass",
+        "Restoring force constant",
+        "Velocity"
+      ],
+      options_hi: [
+        "आयाम",
+        "द्रव्यमान",
+        "पुनर्स्थापन बल स्थिरांक",
+        "वेग"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 20,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Oscillations",
+      question_en: "If a body executes SHM, acceleration is maximum at:",
+      question_hi: "सरल आवर्त गति में अधिकतम त्वरण होगा:",
+      options_en: [
+        "Mean position",
+        "Extreme position",
+        "Everywhere same",
+        "Midway"
+      ],
+      options_hi: [
+        "औसत स्थिति",
+        "चरम स्थिति",
+        "सभी स्थान पर समान",
+        "बीच में"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 21,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Gravitation",
+      question_en: "Escape velocity on Earth is:",
+      question_hi: "पृथ्वी पर पलायन वेग है:",
+      options_en: [
+        "9.8 km/s",
+        "11.2 km/s",
+        "7.9 km/s",
+        "13.6 km/s"
+      ],
+      options_hi: [
+        "9.8 km/s",
+        "11.2 km/s",
+        "7.9 km/s",
+        "13.6 km/s"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 22,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Gravitation",
+      question_en: "Gravitational potential energy at infinite separation is:",
+      question_hi: "अनंत दूरी पर गुरुत्वीय स्थितिज ऊर्जा होती है:",
+      options_en: [
+        "Zero",
+        "Positive",
+        "Negative",
+        "Infinite"
+      ],
+      options_hi: [
+        "शून्य",
+        "धनात्मक",
+        "ऋणात्मक",
+        "अनंत"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 23,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Gravitation",
+      question_en: "Value of g decreases with:",
+      question_hi: "g का मान घटता है:",
+      options_en: [
+        "Height only",
+        "Depth only",
+        "Both height and depth",
+        "Latitude only"
+      ],
+      options_hi: [
+        "केवल ऊँचाई",
+        "केवल गहराई",
+        "ऊँचाई और गहराई दोनों",
+        "केवल अक्षांश"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 24,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Fluid Mechanics",
+      question_en: "Pascal’s law is related to:",
+      question_hi: "पैस्कल का नियम संबंधित है:",
+      options_en: [
+        "Viscosity",
+        "Pressure transmission",
+        "Surface tension",
+        "Buoyancy"
+      ],
+      options_hi: [
+        "श्यानता",
+        "दाब संचरण",
+        "पृष्ठ तनाव",
+        "उत्प्लावन"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 25,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Fluid Mechanics",
+      question_en: "A floating body displaces liquid equal to:",
+      question_hi: "एक तैरती वस्तु उतना द्रव विस्थापित करती है जितना उसका:",
+      options_en: [
+        "Weight",
+        "Volume",
+        "Density",
+        "Pressure"
+      ],
+      options_hi: [
+        "भार",
+        "आयतन",
+        "घनत्व",
+        "दाब"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 26,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Fluid Mechanics",
+      question_en: "Bernoulli’s theorem is based on:",
+      question_hi: "बर्नौली प्रमेय किस पर आधारित है?",
+      options_en: [
+        "Conservation of energy",
+        "Conservation of momentum",
+        "Conservation of mass",
+        "Newton’s 2nd law"
+      ],
+      options_hi: [
+        "ऊर्जा संरक्षण",
+        "गति राशि संरक्षण",
+        "द्रव्यमान संरक्षण",
+        "न्यूटन का दूसरा नियम"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 27,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Thermodynamics",
+      question_en: "First law of thermodynamics is the law of:",
+      question_hi: "ऊष्मागतिकी का पहला नियम किसका नियम है?",
+      options_en: [
+        "Energy conservation",
+        "Mass conservation",
+        "Momentum conservation",
+        "Entropy conservation"
+      ],
+      options_hi: [
+        "ऊर्जा संरक्षण",
+        "द्रव्यमान संरक्षण",
+        "गति राशि संरक्षण",
+        "एंट्रॉपी संरक्षण"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 28,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Thermodynamics",
+      question_en: "Efficiency of Carnot engine depends on:",
+      question_hi: "कार्नो इंजन की दक्षता निर्भर करती है:",
+      options_en: [
+        "Nature of gas",
+        "Source and sink temperature",
+        "Pressure",
+        "Volume"
+      ],
+      options_hi: [
+        "गैस का स्वभाव",
+        "स्रोत और सिंक का तापमान",
+        "दाब",
+        "आयतन"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 29,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Thermodynamics",
+      question_en: "In isothermal process, ΔU = ?",
+      question_hi: "समतापी प्रक्रिया में ΔU = ?",
+      options_en: [
+        "Zero",
+        "Positive",
+        "Negative",
+        "Infinite"
+      ],
+      options_hi: [
+        "शून्य",
+        "धनात्मक",
+        "ऋणात्मक",
+        "अनंत"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 30,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Oscillations",
+      question_en: "For SHM, restoring force is proportional to:",
+      question_hi: "सरल आवर्त गति में प्रत्यावर्ती बल अनुपाती है:",
+      options_en: [
+        "Acceleration",
+        "Velocity",
+        "Displacement",
+        "Mass"
+      ],
+      options_hi: [
+        "त्वरण",
+        "वेग",
+        "विस्थापन",
+        "द्रव्यमान"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 31,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Waves",
+      question_en: "Velocity of sound in air depends on:",
+      question_hi: "वायु में ध्वनि की चाल निर्भर करती है:",
+      options_en: [
+        "Pressure",
+        "Temperature",
+        "Density",
+        "Humidity"
+      ],
+      options_hi: [
+        "दाब",
+        "तापमान",
+        "घनत्व",
+        "आर्द्रता"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 32,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Waves",
+      question_en: "If frequency doubles, wavelength becomes:",
+      question_hi: "यदि आवृत्ति दोगुनी हो जाए, तरंगदैर्ध्य होगा:",
+      options_en: [
+        "Half",
+        "Double",
+        "Same",
+        "Four times"
+      ],
+      options_hi: [
+        "आधा",
+        "दोगुना",
+        "समान",
+        "चार गुना"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 33,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Waves",
+      question_en: "Beats are produced due to:",
+      question_hi: "बीट्स उत्पन्न होते हैं:",
+      options_en: [
+        "Interference of nearly equal frequency waves",
+        "Resonance",
+        "Reflection",
+        "Diffraction"
+      ],
+      options_hi: [
+        "लगभग समान आवृत्ति की तरंगों के हस्तक्षेप से",
+        "अनुनाद",
+        "परावर्तन",
+        "विवर्तन"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 34,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Electrostatics",
+      question_en: "Unit of electric field = ?",
+      question_hi: "वैद्युत क्षेत्र की इकाई = ?",
+      options_en: [
+        "N/C",
+        "J/C",
+        "C/V",
+        "V"
+      ],
+      options_hi: [
+        "N/C",
+        "J/C",
+        "C/V",
+        "V"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 35,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Electrostatics",
+      question_en: "The work done in moving a charge in a closed loop in electrostatic field is:",
+      question_hi: "वैद्युत क्षेत्र में एक बंद पथ में आवेश को ले जाने पर किया गया कार्य = ?",
+      options_en: [
+        "Positive",
+        "Negative",
+        "Zero",
+        "Infinite"
+      ],
+      options_hi: [
+        "धनात्मक",
+        "ऋणात्मक",
+        "शून्य",
+        "अनंत"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 36,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Capacitance",
+      question_en: "Capacitance of parallel plate capacitor depends on:",
+      question_hi: "समांतर पत्तर संधारित्र की धारिता निर्भर करती है:",
+      options_en: [
+        "Area and distance",
+        "Potential difference only",
+        "Charge only",
+        "Current"
+      ],
+      options_hi: [
+        "क्षेत्रफल और दूरी",
+        "विभवांतर मात्र",
+        "आवेश मात्र",
+        "धारा"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 37,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Current Electricity",
+      question_en: "Ohm’s law is valid when:",
+      question_hi: "ओम का नियम मान्य है जब:",
+      options_en: [
+        "Temperature is constant",
+        "Current is high",
+        "Voltage is high",
+        "Resistance varies"
+      ],
+      options_hi: [
+        "तापमान स्थिर हो",
+        "धारा अधिक हो",
+        "वोल्टेज अधिक हो",
+        "प्रतिरोध बदलता हो"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 38,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Current Electricity",
+      question_en: "The slope of V-I graph gives:",
+      question_hi: "V-I ग्राफ का ढलान दर्शाता है:",
+      options_en: [
+        "Resistance",
+        "Current",
+        "Conductance",
+        "Power"
+      ],
+      options_hi: [
+        "प्रतिरोध",
+        "धारा",
+        "चालकता",
+        "शक्ति"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 39,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Resistivity",
+      question_en: "Resistivity of a conductor depends on:",
+      question_hi: "चालक का प्रतिरोधकत्व निर्भर करता है:",
+      options_en: [
+        "Length",
+        "Area",
+        "Material",
+        "Voltage"
+      ],
+      options_hi: [
+        "लंबाई",
+        "क्षेत्रफल",
+        "पदार्थ",
+        "वोल्टेज"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 40,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Magnetism",
+      question_en: "The unit of magnetic flux is:",
+      question_hi: "चुम्बकीय फ्लक्स की इकाई है:",
+      options_en: [
+        "Tesla",
+        "Weber",
+        "Henry",
+        "Coulomb"
+      ],
+      options_hi: [
+        "टेस्ला",
+        "वेबर",
+        "हेनरी",
+        "कुलाम"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 41,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Magnetism",
+      question_en: "The SI unit of magnetic field is:",
+      question_hi: "चुम्बकीय क्षेत्र की SI इकाई है:",
+      options_en: [
+        "Tesla",
+        "Weber",
+        "Gauss",
+        "Ampere"
+      ],
+      options_hi: [
+        "टेस्ला",
+        "वेबर",
+        "गॉस",
+        "एम्पीयर"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 42,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Magnetism",
+      question_en: "Force on a charge moving in magnetic field is maximum when:",
+      question_hi: "चुम्बकीय क्षेत्र में गतिमान आवेश पर बल अधिकतम होगा जब:",
+      options_en: [
+        "Parallel to field",
+        "Perpendicular to field",
+        "At 45°",
+        "Zero"
+      ],
+      options_hi: [
+        "क्षेत्र के समानांतर",
+        "क्षेत्र के लंबवत्",
+        "45° पर",
+        "शून्य"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 43,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Modern Physics",
+      question_en: "Energy of photon = ?",
+      question_hi: "फोटॉन की ऊर्जा = ?",
+      options_en: [
+        "hv",
+        "mc²",
+        "½ mv²",
+        "hc"
+      ],
+      options_hi: [
+        "hv",
+        "mc²",
+        "½ mv²",
+        "hc"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 44,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Radioactivity",
+      question_en: "Half-life of radioactive substance depends on:",
+      question_hi: "रेडियोधर्मी पदार्थ का अर्ध-आयु निर्भर करता है:",
+      options_en: [
+        "Pressure",
+        "Temperature",
+        "Nature of substance",
+        "Volume"
+      ],
+      options_hi: [
+        "दाब",
+        "तापमान",
+        "पदार्थ का स्वभाव",
+        "आयतन"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 45,
+      subject: "physics",
+      subjectName: "Physics",
+      chapter: "Nuclear Physics",
+      question_en: "Binding energy per nucleon is maximum for:",
+      question_hi: "प्रत्येक न्यूक्लियॉन पर बंधन ऊर्जा सबसे अधिक किसके लिए है?",
+      options_en: [
+        "Hydrogen",
+        "Uranium",
+        "Iron",
+        "Plutonium"
+      ],
+      options_hi: [
+        "हाइड्रोजन",
+        "यूरेनियम",
+        "लोहा",
+        "प्लूटोनियम"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 46,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Atomic Structure",
+      question_en: "Q1: (Atomic Structure) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q1: (Atomic Structure) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 47,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Periodic Table",
+      question_en: "Q2: (Periodic Table) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q2: (Periodic Table) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 48,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Chemical Bonding",
+      question_en: "Q3: (Chemical Bonding) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q3: (Chemical Bonding) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 49,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Stoichiometry",
+      question_en: "Q4: (Stoichiometry) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q4: (Stoichiometry) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 50,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "States of Matter",
+      question_en: "Q5: (States of Matter) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q5: (States of Matter) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 51,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Thermodynamics",
+      question_en: "Q6: (Thermodynamics) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q6: (Thermodynamics) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 52,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Equilibrium",
+      question_en: "Q7: (Equilibrium) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q7: (Equilibrium) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 53,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Redox Reactions",
+      question_en: "Q8: (Redox Reactions) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q8: (Redox Reactions) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 54,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Organic Chemistry",
+      question_en: "Q9: (Organic Chemistry) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q9: (Organic Chemistry) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 55,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Coordination Compounds",
+      question_en: "Q10: (Coordination Compounds) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q10: (Coordination Compounds) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 56,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Atomic Structure",
+      question_en: "Q11: (Atomic Structure) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q11: (Atomic Structure) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 57,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Periodic Table",
+      question_en: "Q12: (Periodic Table) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q12: (Periodic Table) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 58,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Chemical Bonding",
+      question_en: "Q13: (Chemical Bonding) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q13: (Chemical Bonding) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 59,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Stoichiometry",
+      question_en: "Q14: (Stoichiometry) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q14: (Stoichiometry) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 60,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "States of Matter",
+      question_en: "Q15: (States of Matter) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q15: (States of Matter) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 61,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Thermodynamics",
+      question_en: "Q16: (Thermodynamics) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q16: (Thermodynamics) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 62,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Equilibrium",
+      question_en: "Q17: (Equilibrium) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q17: (Equilibrium) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 63,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Redox Reactions",
+      question_en: "Q18: (Redox Reactions) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q18: (Redox Reactions) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 64,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Organic Chemistry",
+      question_en: "Q19: (Organic Chemistry) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q19: (Organic Chemistry) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 65,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Coordination Compounds",
+      question_en: "Q20: (Coordination Compounds) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q20: (Coordination Compounds) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 66,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Atomic Structure",
+      question_en: "Q21: (Atomic Structure) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q21: (Atomic Structure) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 67,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Periodic Table",
+      question_en: "Q22: (Periodic Table) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q22: (Periodic Table) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 68,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Chemical Bonding",
+      question_en: "Q23: (Chemical Bonding) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q23: (Chemical Bonding) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 69,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Stoichiometry",
+      question_en: "Q24: (Stoichiometry) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q24: (Stoichiometry) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 70,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "States of Matter",
+      question_en: "Q25: (States of Matter) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q25: (States of Matter) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 71,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Thermodynamics",
+      question_en: "Q26: (Thermodynamics) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q26: (Thermodynamics) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 72,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Equilibrium",
+      question_en: "Q27: (Equilibrium) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q27: (Equilibrium) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 73,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Redox Reactions",
+      question_en: "Q28: (Redox Reactions) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q28: (Redox Reactions) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 74,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Organic Chemistry",
+      question_en: "Q29: (Organic Chemistry) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q29: (Organic Chemistry) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 75,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Coordination Compounds",
+      question_en: "Q30: (Coordination Compounds) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q30: (Coordination Compounds) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 76,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Atomic Structure",
+      question_en: "Q31: (Atomic Structure) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q31: (Atomic Structure) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 77,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Periodic Table",
+      question_en: "Q32: (Periodic Table) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q32: (Periodic Table) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 78,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Chemical Bonding",
+      question_en: "Q33: (Chemical Bonding) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q33: (Chemical Bonding) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 79,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Stoichiometry",
+      question_en: "Q34: (Stoichiometry) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q34: (Stoichiometry) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 80,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "States of Matter",
+      question_en: "Q35: (States of Matter) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q35: (States of Matter) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 81,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Thermodynamics",
+      question_en: "Q36: (Thermodynamics) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q36: (Thermodynamics) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 82,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Equilibrium",
+      question_en: "Q37: (Equilibrium) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q37: (Equilibrium) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 83,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Redox Reactions",
+      question_en: "Q38: (Redox Reactions) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q38: (Redox Reactions) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 84,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Organic Chemistry",
+      question_en: "Q39: (Organic Chemistry) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q39: (Organic Chemistry) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 85,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Coordination Compounds",
+      question_en: "Q40: (Coordination Compounds) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q40: (Coordination Compounds) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 86,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Atomic Structure",
+      question_en: "Q41: (Atomic Structure) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q41: (Atomic Structure) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 87,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Periodic Table",
+      question_en: "Q42: (Periodic Table) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q42: (Periodic Table) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 88,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Chemical Bonding",
+      question_en: "Q43: (Chemical Bonding) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q43: (Chemical Bonding) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 89,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "Stoichiometry",
+      question_en: "Q44: (Stoichiometry) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q44: (Stoichiometry) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 90,
+      subject: "chemistry",
+      subjectName: "Chemistry",
+      chapter: "States of Matter",
+      question_en: "Q45: (States of Matter) Concept-based question related to Chemistry - choose the best option.",
+      question_hi: "Q45: (States of Matter) Chemistry से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 91,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Kingdom",
+      question_en: "Q1: (Plant Kingdom) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q1: (Plant Kingdom) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 92,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Morphology",
+      question_en: "Q2: (Plant Morphology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q2: (Plant Morphology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 93,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Physiology",
+      question_en: "Q3: (Plant Physiology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q3: (Plant Physiology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 94,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Cell Biology",
+      question_en: "Q4: (Cell Biology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q4: (Cell Biology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 95,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Genetics",
+      question_en: "Q5: (Genetics) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q5: (Genetics) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 96,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Evolution",
+      question_en: "Q6: (Evolution) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q6: (Evolution) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 97,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Ecology",
+      question_en: "Q7: (Ecology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q7: (Ecology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 98,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Reproduction in Plants",
+      question_en: "Q8: (Reproduction in Plants) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q8: (Reproduction in Plants) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 99,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Biotechnology",
+      question_en: "Q9: (Biotechnology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q9: (Biotechnology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 100,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Diversity",
+      question_en: "Q10: (Plant Diversity) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q10: (Plant Diversity) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 101,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Kingdom",
+      question_en: "Q11: (Plant Kingdom) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q11: (Plant Kingdom) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 102,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Morphology",
+      question_en: "Q12: (Plant Morphology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q12: (Plant Morphology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 103,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Physiology",
+      question_en: "Q13: (Plant Physiology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q13: (Plant Physiology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 104,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Cell Biology",
+      question_en: "Q14: (Cell Biology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q14: (Cell Biology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 105,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Genetics",
+      question_en: "Q15: (Genetics) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q15: (Genetics) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 106,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Evolution",
+      question_en: "Q16: (Evolution) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q16: (Evolution) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 107,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Ecology",
+      question_en: "Q17: (Ecology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q17: (Ecology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 108,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Reproduction in Plants",
+      question_en: "Q18: (Reproduction in Plants) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q18: (Reproduction in Plants) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 109,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Biotechnology",
+      question_en: "Q19: (Biotechnology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q19: (Biotechnology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 110,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Diversity",
+      question_en: "Q20: (Plant Diversity) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q20: (Plant Diversity) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 111,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Kingdom",
+      question_en: "Q21: (Plant Kingdom) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q21: (Plant Kingdom) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 112,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Morphology",
+      question_en: "Q22: (Plant Morphology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q22: (Plant Morphology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 113,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Physiology",
+      question_en: "Q23: (Plant Physiology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q23: (Plant Physiology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 114,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Cell Biology",
+      question_en: "Q24: (Cell Biology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q24: (Cell Biology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 115,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Genetics",
+      question_en: "Q25: (Genetics) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q25: (Genetics) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 116,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Evolution",
+      question_en: "Q26: (Evolution) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q26: (Evolution) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 117,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Ecology",
+      question_en: "Q27: (Ecology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q27: (Ecology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 118,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Reproduction in Plants",
+      question_en: "Q28: (Reproduction in Plants) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q28: (Reproduction in Plants) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 119,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Biotechnology",
+      question_en: "Q29: (Biotechnology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q29: (Biotechnology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 120,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Diversity",
+      question_en: "Q30: (Plant Diversity) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q30: (Plant Diversity) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 121,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Kingdom",
+      question_en: "Q31: (Plant Kingdom) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q31: (Plant Kingdom) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 122,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Morphology",
+      question_en: "Q32: (Plant Morphology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q32: (Plant Morphology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 123,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Physiology",
+      question_en: "Q33: (Plant Physiology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q33: (Plant Physiology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 124,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Cell Biology",
+      question_en: "Q34: (Cell Biology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q34: (Cell Biology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 125,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Genetics",
+      question_en: "Q35: (Genetics) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q35: (Genetics) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 126,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Evolution",
+      question_en: "Q36: (Evolution) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q36: (Evolution) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 127,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Ecology",
+      question_en: "Q37: (Ecology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q37: (Ecology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 128,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Reproduction in Plants",
+      question_en: "Q38: (Reproduction in Plants) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q38: (Reproduction in Plants) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 129,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Biotechnology",
+      question_en: "Q39: (Biotechnology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q39: (Biotechnology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 130,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Diversity",
+      question_en: "Q40: (Plant Diversity) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q40: (Plant Diversity) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 131,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Kingdom",
+      question_en: "Q41: (Plant Kingdom) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q41: (Plant Kingdom) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 132,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Morphology",
+      question_en: "Q42: (Plant Morphology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q42: (Plant Morphology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 133,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Plant Physiology",
+      question_en: "Q43: (Plant Physiology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q43: (Plant Physiology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 134,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Cell Biology",
+      question_en: "Q44: (Cell Biology) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q44: (Cell Biology) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 135,
+      subject: "botany",
+      subjectName: "Botany",
+      chapter: "Genetics",
+      question_en: "Q45: (Genetics) Concept-based question related to Botany - choose the best option.",
+      question_hi: "Q45: (Genetics) Botany से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 136,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Kingdom",
+      question_en: "Q1: (Animal Kingdom) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q1: (Animal Kingdom) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 137,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Human Physiology",
+      question_en: "Q2: (Human Physiology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q2: (Human Physiology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 138,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Evolution",
+      question_en: "Q3: (Evolution) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q3: (Evolution) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 139,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Genetics",
+      question_en: "Q4: (Genetics) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q4: (Genetics) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 140,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Morphology",
+      question_en: "Q5: (Animal Morphology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q5: (Animal Morphology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 141,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Ecology",
+      question_en: "Q6: (Ecology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q6: (Ecology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 142,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Reproduction in Animals",
+      question_en: "Q7: (Reproduction in Animals) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q7: (Reproduction in Animals) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 143,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Immune System",
+      question_en: "Q8: (Immune System) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q8: (Immune System) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 144,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Behaviour",
+      question_en: "Q9: (Animal Behaviour) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q9: (Animal Behaviour) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 145,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Biodiversity",
+      question_en: "Q10: (Biodiversity) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q10: (Biodiversity) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 146,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Kingdom",
+      question_en: "Q11: (Animal Kingdom) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q11: (Animal Kingdom) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 147,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Human Physiology",
+      question_en: "Q12: (Human Physiology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q12: (Human Physiology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 148,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Evolution",
+      question_en: "Q13: (Evolution) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q13: (Evolution) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 149,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Genetics",
+      question_en: "Q14: (Genetics) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q14: (Genetics) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 150,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Morphology",
+      question_en: "Q15: (Animal Morphology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q15: (Animal Morphology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 151,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Ecology",
+      question_en: "Q16: (Ecology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q16: (Ecology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 152,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Reproduction in Animals",
+      question_en: "Q17: (Reproduction in Animals) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q17: (Reproduction in Animals) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 153,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Immune System",
+      question_en: "Q18: (Immune System) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q18: (Immune System) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 154,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Behaviour",
+      question_en: "Q19: (Animal Behaviour) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q19: (Animal Behaviour) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 155,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Biodiversity",
+      question_en: "Q20: (Biodiversity) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q20: (Biodiversity) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 156,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Kingdom",
+      question_en: "Q21: (Animal Kingdom) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q21: (Animal Kingdom) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 157,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Human Physiology",
+      question_en: "Q22: (Human Physiology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q22: (Human Physiology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 158,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Evolution",
+      question_en: "Q23: (Evolution) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q23: (Evolution) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 159,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Genetics",
+      question_en: "Q24: (Genetics) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q24: (Genetics) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 160,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Morphology",
+      question_en: "Q25: (Animal Morphology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q25: (Animal Morphology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 161,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Ecology",
+      question_en: "Q26: (Ecology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q26: (Ecology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 162,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Reproduction in Animals",
+      question_en: "Q27: (Reproduction in Animals) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q27: (Reproduction in Animals) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 163,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Immune System",
+      question_en: "Q28: (Immune System) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q28: (Immune System) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 164,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Behaviour",
+      question_en: "Q29: (Animal Behaviour) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q29: (Animal Behaviour) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 165,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Biodiversity",
+      question_en: "Q30: (Biodiversity) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q30: (Biodiversity) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 166,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Kingdom",
+      question_en: "Q31: (Animal Kingdom) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q31: (Animal Kingdom) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 167,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Human Physiology",
+      question_en: "Q32: (Human Physiology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q32: (Human Physiology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 168,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Evolution",
+      question_en: "Q33: (Evolution) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q33: (Evolution) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 169,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Genetics",
+      question_en: "Q34: (Genetics) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q34: (Genetics) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 170,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Morphology",
+      question_en: "Q35: (Animal Morphology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q35: (Animal Morphology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 171,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Ecology",
+      question_en: "Q36: (Ecology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q36: (Ecology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 172,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Reproduction in Animals",
+      question_en: "Q37: (Reproduction in Animals) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q37: (Reproduction in Animals) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 173,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Immune System",
+      question_en: "Q38: (Immune System) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q38: (Immune System) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 174,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Behaviour",
+      question_en: "Q39: (Animal Behaviour) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q39: (Animal Behaviour) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 175,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Biodiversity",
+      question_en: "Q40: (Biodiversity) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q40: (Biodiversity) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 176,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Kingdom",
+      question_en: "Q41: (Animal Kingdom) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q41: (Animal Kingdom) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    },
+    {
+      id: 177,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Human Physiology",
+      question_en: "Q42: (Human Physiology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q42: (Human Physiology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 178,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Evolution",
+      question_en: "Q43: (Evolution) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q43: (Evolution) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 179,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Genetics",
+      question_en: "Q44: (Genetics) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q44: (Genetics) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 3
+    },
+    {
+      id: 180,
+      subject: "zoology",
+      subjectName: "Zoology",
+      chapter: "Animal Morphology",
+      question_en: "Q45: (Animal Morphology) Concept-based question related to Zoology - choose the best option.",
+      question_hi: "Q45: (Animal Morphology) Zoology से संबंधित धारणा-आधारित प्रश्न - सबसे उपयुक्त विकल्प चुनिए।",
+      options_en: [
+        "Option A",
+        "Option B",
+        "Option C",
+        "Option D"
+      ],
+      options_hi: [
+        "विकल्प A",
+        "विकल्प B",
+        "विकल्प C",
+        "विकल्प D"
+      ],
+      correctAnswer: 0
+    }
+  ]
+}; 
+          // Generate questions array with 180 items (45 per subject)
         async function generateQuestions() {
-            try {
-                // Try to fetch the JSON file
+            try { 
                 let jsonData;
                 if (typeof uploadedJSON !== 'undefined') {
                     // Use the global variable if available
